@@ -1,0 +1,49 @@
+name: Gatling CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - uses: actions/checkout@v4
+
+      # Step 2: Set up JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      # Step 3: Run Gatling tests
+      - name: Run Gatling tests
+        if: always()
+        run: mvn gatling:test
+        continue-on-error: true
+
+      # Step 4: Get Gatling history (if publishing to gh-pages)
+      - name: Get Gatling history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      # Step 5: Upload Gatling HTML Report
+      - name: Upload Gatling Report as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gatling-report
+          path: target/gatling
+
+      # Step 6: Deploy Gatling Report to GitHub Pages
+      - name: Deploy Gatling report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gatling-results
+          publish_dir: ./target/gatling
