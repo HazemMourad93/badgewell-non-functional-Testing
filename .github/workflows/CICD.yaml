@@ -17,33 +17,31 @@ jobs:
           distribution: 'adopt'
 
       # Step 3: Run Gatling tests
-      - name: Run Gatling tests
+      - name: Run Gatling Tests
         if: always()
         run: mvn gatling:test
         continue-on-error: true
 
-      # Step 4: Get Gatling history (if publishing to gh-pages)
-      - name: Get Gatling history
-        uses: actions/checkout@v4
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
+      # Step 4: Find latest Gatling report folder
+      - name: Get Latest Gatling Report Path
+        id: gatling-report
+        run: |
+          REPORT_DIR=$(cat target/gatling/lastRun.txt)
+          echo "report_dir=target/gatling/$REPORT_DIR" >> $GITHUB_ENV
 
-      # Step 5: Upload Gatling HTML Report
-      - name: Upload Gatling Report as artifact
+      # Step 5: Upload Gatling HTML report (latest only)
+      - name: Upload Gatling Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: gatling-report
-          path: target/gatling
+          path: ${{ env.report_dir }}
 
-      # Step 6: Deploy Gatling Report to GitHub Pages
-      - name: Deploy Gatling report to GitHub Pages
+      # Step 6: Deploy Gatling report to GitHub Pages (branch: test-results)
+      - name: Deploy Gatling Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: test-results
-          publish_dir: ./target/gatling
+          publish_dir: ${{ env.report_dir }}
