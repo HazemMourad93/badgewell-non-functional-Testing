@@ -1,1 +1,4 @@
 example\BasicSimulation.class
+io\gatling\tut\RecordedSimulation.class
+io\gatling\tut\RecordedSimulationProxy.class
+io\gatling\tut\MyFirstTest.class
