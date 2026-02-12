@@ -19,8 +19,8 @@ public class VIDEODBRESPCODE extends  Simulation{
             // 1st request: get all games
             .exec(
                     getAllGames()
-                            .check(status().in(200, 201, 202))
-            )
+                            .check(status().in(200, 201, 202)).check(jsonPath("$[?(@.id==1)].name")
+                                    .is("Resident Evil 4")))
             .pause(5)
 
             // 2nd request: get game by id
