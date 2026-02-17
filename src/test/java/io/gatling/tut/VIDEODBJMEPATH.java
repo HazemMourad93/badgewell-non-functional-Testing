@@ -19,7 +19,7 @@ public class VIDEODBJMEPATH extends  Simulation {
             .exec(
                     getAllGames()
                             .check(status().in(200, 201, 202)).check(jmesPath("[?id==`1`].name | [0]")
-                                    .is("Resident Evil 4")))
+                    .is("Resident Evil 4")))
             .pause(5)
 
             // 2nd request: get game by id
@@ -33,8 +33,15 @@ public class VIDEODBJMEPATH extends  Simulation {
             .exec(
                     getAllGames()
                             .check(status().not(404),status().not( 500) , status().not(504))
+                            .check(jmesPath("[1].id").saveAs("secondGameId"))
+
             )
-            .pause(Duration.ofMillis(4000));
+            .pause(Duration.ofMillis(4000))
+                .exec(
+                        http("Get second game by ID")
+                                .get("/videogame/${secondGameId}")
+                                .check(jmesPath("name").is("Gran Turismo 3"))
+                );
 
     {
         setUp(
