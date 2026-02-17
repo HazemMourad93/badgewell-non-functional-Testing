@@ -37,21 +37,19 @@ jobs:
           echo '<meta http-equiv="Pragma" content="no-cache">' >> redirect/index.html
           echo '<meta http-equiv="Expires" content="0">' >> redirect/index.html
 
-      # Upload Gatling report
+      # Step 5: Upload Gatling HTML report (latest only)
       - name: Upload Gatling Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: gatling-report
-          path: ${{ env.REPORT_PATH }}
+          path: ${{ env.report_dir }}
 
-      # Deploy to GitHub Pages
+      # Step 6: Deploy Gatling report to GitHub Pages (branch: test-results)
       - name: Deploy Gatling Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: test-results
-          publish_dir: |
-            target/gatling
-            redirect
+          publish_dir: ${{ env.report_dir }}
