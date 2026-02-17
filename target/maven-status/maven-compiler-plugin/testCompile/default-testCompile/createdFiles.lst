@@ -4,5 +4,6 @@ example\HelperClassTUT\VideoGameRequests.class
 example\BasicSimulation.class
 io\gatling\tut\RecordedSimulation.class
 example\HelperClassTUT\HttpConfig.class
+io\gatling\tut\VIDEODBJMEPATH.class
 io\gatling\tut\MyFirstTest.class
 io\gatling\tut\VIDEODBRESPCODE.class
