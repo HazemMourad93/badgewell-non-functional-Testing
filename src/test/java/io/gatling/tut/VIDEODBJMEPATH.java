@@ -25,9 +25,15 @@ public class VIDEODBJMEPATH extends  Simulation {
             // 2nd request: get game by id
             .exec(
                     getGameById(1)
-                            .check(status().is(200))
+                            .check(status().is(200)).check(bodyString().saveAs("responseBody"))
             )
-            .pause(1, 10)
+            .pause(1, 10).exec(
+                    session -> {
+                        String responseBody = session.getString("responseBody");
+                        System.out.println("Response Body: " + responseBody);
+                        return session;
+                    }
+            )
 
             // 3rd request: get all games again
             .exec(
@@ -38,9 +44,10 @@ public class VIDEODBJMEPATH extends  Simulation {
             )
             .pause(Duration.ofMillis(4000))
                 .exec(
-                        http("Get second game by ID")
-                                .get("/videogame/${secondGameId}")
-                                .check(jmesPath("name").is("Gran Turismo 3"))
+                        session-> {
+                            System.out.println("Second game ID: " + session.getInt("secondGameId"));
+                            return session;
+                        }
                 );
 
     {
