@@ -16,40 +16,34 @@ jobs:
           distribution: 'adopt'
 
       - name: Run Gatling Tests
-        if: always()
         run: mvn gatling:test
         continue-on-error: true
 
       - name: Get Latest Gatling Report Path
-        id: gatling-report
         run: |
           REPORT_DIR=$(cat target/gatling/lastRun.txt)
           echo "REPORT_DIR=$REPORT_DIR" >> $GITHUB_ENV
           echo "REPORT_PATH=target/gatling/$REPORT_DIR" >> $GITHUB_ENV
 
-      # ✅ Create redirect index.html
+      # 🧠 Copy Gatling report to publish folder
+      - name: Prepare publish folder
+        run: |
+          mkdir -p publish/$REPORT_DIR
+          cp -r $REPORT_PATH/* publish/$REPORT_DIR/
+
+      # 🌍 Create root redirect index.html
       - name: Create redirect index.html
         run: |
-          mkdir -p redirect
-          echo '<!DOCTYPE html>' > redirect/index.html
-          echo '<meta charset="utf-8">' >> redirect/index.html
-          echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://badgewell.github.io/badgewell-crm-testing/${{ env.REPORT_DIR }}/index.html\">" >> redirect/index.html
-          echo '<meta http-equiv="Pragma" content="no-cache">' >> redirect/index.html
-          echo '<meta http-equiv="Expires" content="0">' >> redirect/index.html
+          echo '<!DOCTYPE html>' > publish/index.html
+          echo '<meta charset="utf-8">' >> publish/index.html
+          echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://badgewell.github.io/badgewell-crm-testing/${REPORT_DIR}/index.html\">" >> publish/index.html
+          echo '<meta http-equiv="Pragma" content="no-cache">' >> publish/index.html
+          echo '<meta http-equiv="Expires" content="0">' >> publish/index.html
 
-      # Step 5: Upload Gatling HTML report (latest only)
-      - name: Upload Gatling Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: gatling-report
-          path: ${{ env.report_dir }}
-
-      # Step 6: Deploy Gatling report to GitHub Pages (branch: test-results)
+      # 🚀 Deploy to GitHub Pages (test-results branch)
       - name: Deploy Gatling Report to GitHub Pages
-        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: test-results
-          publish_dir: ${{ env.report_dir }}
+          publish_dir: publish
