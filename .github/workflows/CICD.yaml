@@ -19,29 +19,28 @@ jobs:
         run: mvn gatling:test
         continue-on-error: true
 
-      - name: Get Latest Gatling Report Path
+      - name: Get latest Gatling folder
         run: |
           REPORT_DIR=$(cat target/gatling/lastRun.txt)
           echo "REPORT_DIR=$REPORT_DIR" >> $GITHUB_ENV
-          echo "REPORT_PATH=target/gatling/$REPORT_DIR" >> $GITHUB_ENV
 
-      # 🧠 Copy Gatling report to publish folder
+      # 📦 Prepare publish folder
       - name: Prepare publish folder
         run: |
           mkdir -p publish/$REPORT_DIR
-          cp -r $REPORT_PATH/* publish/$REPORT_DIR/
+          cp -r target/gatling/$REPORT_DIR/* publish/$REPORT_DIR/
 
       # 🌍 Create root redirect index.html
       - name: Create redirect index.html
         run: |
           echo '<!DOCTYPE html>' > publish/index.html
           echo '<meta charset="utf-8">' >> publish/index.html
-          echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://badgewell.github.io/badgewell-crm-testing/${REPORT_DIR}/index.html\">" >> publish/index.html
+          echo "<meta http-equiv=\"refresh\" content=\"0; URL=https://hazemmourad93.github.io/badgewell-non-functional-Testing/${REPORT_DIR}/index.html\">" >> publish/index.html
           echo '<meta http-equiv="Pragma" content="no-cache">' >> publish/index.html
           echo '<meta http-equiv="Expires" content="0">' >> publish/index.html
 
       # 🚀 Deploy to GitHub Pages (test-results branch)
-      - name: Deploy Gatling Report to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
