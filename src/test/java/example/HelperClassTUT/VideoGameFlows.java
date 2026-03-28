@@ -37,4 +37,52 @@ public class VideoGameFlows {
                         )
         ).pause(Duration.ofMillis(4000));
     }
+
+
+// FIXED LOOP
+
+    public static ChainBuilder getAllGamesBasicFlowLooped(int times) {
+        return repeat(times).on(
+                exec(
+                        VideoGameRequests.getWithPause()
+                                .check(
+                                        status().not(404),
+                                        status().not(500),
+                                        status().not(504)
+                                )
+                ).pause(Duration.ofMillis(4000))
+        );
+    }
+
+
+    public static ChainBuilder getAllGamesConditionalLoop() {
+        return asLongAs(session -> session.getInt("counter") < 5).on(
+                exec(
+                        VideoGameRequests.getWithPause()
+                                .check(
+                                        status().not(404),
+                                        status().not(500),
+                                        status().not(504)
+                                )
+                )
+                        .exec(session -> session.set("counter", session.getInt("counter") + 1))
+                        .pause(Duration.ofMillis(4000))
+        );
+    }
+
+    public static ChainBuilder getAllGamesBasicFlowDuring(int durationSeconds) {
+        return during(durationSeconds).on(
+                exec(
+                        VideoGameRequests.getWithPause()
+                                .check(
+                                        status().not(404),
+                                        status().not(500),
+                                        status().not(504)
+                                )
+                ).pause(Duration.ofMillis(4000))
+        );
+    }
+
+
+
 }

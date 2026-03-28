@@ -1,6 +1,8 @@
 example\HelperClassTUT\VideoGameFlows.class
 io\gatling\tut\RecordedSimulationProxy.class
 io\gatling\tut\VIDEODB.class
+io\gatling\tut\VIDEOCOUNTER.class
+io\gatling\tut\VIDEOCOUNTERDURATION.class
 example\HelperClassTUT\VideoGameRequests.class
 example\BasicSimulation.class
 io\gatling\tut\RecordedSimulation.class

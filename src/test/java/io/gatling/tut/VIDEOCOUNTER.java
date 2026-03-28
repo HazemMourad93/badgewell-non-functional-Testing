@@ -1,5 +1,4 @@
 package io.gatling.tut;
-
 import io.gatling.javaapi.core.Simulation;
 import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
@@ -12,20 +11,19 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
 
 
-public class VIDEODBRESPCODE extends  Simulation{
+
+public class VIDEOCOUNTER extends Simulation{
 
 
-
-    ScenarioBuilder scn = scenario("Video Game Performance Test")
-            .exec(VideoGameFlows.getAllGamesFlow())
-            .exec(VideoGameFlows.getGameByIdFlow(1))
-            .exec(VideoGameFlows.getAllGamesBasicFlow());
+    ScenarioBuilder scn = scenario("Video Game Performance Test LOOPING")
+            .exec(VideoGameFlows.getAllGamesBasicFlowLooped(3));
 
     {
         setUp(
                 scn.injectOpen(atOnceUsers(1))
         ).protocols(HttpConfig.baseConfig());
     }
+
 
 
 }
