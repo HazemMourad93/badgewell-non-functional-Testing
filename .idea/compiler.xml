@@ -7,10 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gatling-maven-plugin-demo-java" />
+        <module name="gatling-maven-plugin-demo-java (1)" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="gatling-maven-plugin-demo-java (1)" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
