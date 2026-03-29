@@ -85,4 +85,17 @@ public class VideoGameFlows {
 
 
 
+    public static ChainBuilder createNewGameFlow(String token, VideoGameBody body) {
+        return exec(
+                VideoGameRequests.createNewGame(token, body).check(status().not(404),
+                        status().not(500),
+                        status().not(504))
+                        .check(status().in(200, 201))
+        );
+    }
+
+
+
+
+
 }
