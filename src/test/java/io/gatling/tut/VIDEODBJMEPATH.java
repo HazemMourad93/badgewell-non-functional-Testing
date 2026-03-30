@@ -47,7 +47,7 @@ public class VIDEODBJMEPATH extends  Simulation {
                         session-> {
                             System.out.println("Second game ID: " + session.getInt("secondGameId"));
                             return session;
-                        }
+                        } 
                 );
 
     {
