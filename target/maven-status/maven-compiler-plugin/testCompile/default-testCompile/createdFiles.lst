@@ -1,7 +1,10 @@
 example\HelperClassTUT\VideoGameFlows.class
 io\gatling\tut\RecordedSimulationProxy.class
+example\HelperClassTUT\EncryptionUtil.class
 io\gatling\tut\VIDEODB.class
+example\HelperClassTUT\ConfigReader.class
 io\gatling\tut\VIDEOCOUNTER.class
+example\HelperClassTUT\VideoGameBody.class
 io\gatling\tut\VIDEOCOUNTERDURATION.class
 example\HelperClassTUT\VideoGameRequests.class
 example\BasicSimulation.class
@@ -9,4 +12,5 @@ io\gatling\tut\RecordedSimulation.class
 example\HelperClassTUT\HttpConfig.class
 io\gatling\tut\VIDEODBJMEPATH.class
 io\gatling\tut\MyFirstTest.class
+example\HelperClassTUT\TokenRunner.class
 io\gatling\tut\VIDEODBRESPCODE.class

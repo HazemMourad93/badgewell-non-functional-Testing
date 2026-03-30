@@ -1,12 +1,16 @@
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\example\BasicSimulation.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\HttpConfig.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\VideoGameFlows.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\VideoGameRequests.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\MyFirstTest.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\RecordedSimulation.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\RecordedSimulationProxy.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEOCOUNTER.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEOCOUNTERDURATION.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEODB.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEODBJMEPATH.java
-D:\Badgewell_Non_Functional\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEODBRESPCODE.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\BasicSimulation.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\ConfigReader.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\EncryptionUtil.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\HttpConfig.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\TokenRunner.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\VideoGameBody.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\VideoGameFlows.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\example\HelperClassTUT\VideoGameRequests.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\MyFirstTest.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\RecordedSimulation.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\RecordedSimulationProxy.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEOCOUNTER.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEOCOUNTERDURATION.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEODB.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEODBJMEPATH.java
+D:\Performance Testing\badgewell-non-functional-Testing\src\test\java\io\gatling\tut\VIDEODBRESPCODE.java
