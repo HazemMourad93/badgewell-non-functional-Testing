@@ -4,9 +4,8 @@ package example.HelperClassTUT;
 import io.gatling.javaapi.core.ChainBuilder;
 import io.gatling.javaapi.http.HttpRequestActionBuilder;
 
-import static io.gatling.javaapi.core.CoreDsl.StringBody;
+import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.http;
-import static io.gatling.javaapi.core.CoreDsl.exec;
 
 public class VideoGameRequests {
 
@@ -28,13 +27,25 @@ public class VideoGameRequests {
 
     public static HttpRequestActionBuilder createNewGame(String token, VideoGameBody body) {
         return http("Create New Game")
-                .post("/videogames")
+                .post("api/videogames")
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + token)
                 .body(StringBody(body.toJson())) // 🔥 use POJO → JSON
                 .asJson();
     }
 
+    // ✅ Feeder-based - matches video: GET by gameId, check gameName
+    public static HttpRequestActionBuilder getSpecificGame() {
+        return http("Get video game with name - #{gameName}")
+                .get("/videogame/#{gameId}")
+                .check(jmesPath("name").isEL("#{gameName}"));
+    }
+
+    public static HttpRequestActionBuilder getSpecificGameName() {
+        return http("Get video game with name - #{name}")
+                .get("/videogame/#{id}")
+                .check(jmesPath("name").isEL("#{name}"));
+    }
 
 
 

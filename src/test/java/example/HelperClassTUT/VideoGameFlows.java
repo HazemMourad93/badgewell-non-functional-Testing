@@ -1,6 +1,7 @@
 package example.HelperClassTUT;
 
 import io.gatling.javaapi.core.ChainBuilder;
+import scala.Function1;
 
 import java.time.Duration;
 
@@ -87,13 +88,27 @@ public class VideoGameFlows {
 
     public static ChainBuilder createNewGameFlow(String token, VideoGameBody body) {
         return exec(
-                VideoGameRequests.createNewGame(token, body).check(status().not(404),
-                        status().not(500),
-                        status().not(504))
+                VideoGameRequests.createNewGame(token, body)
+                        .check(status().not(404))
+                        .check(status().not(500))
+                        .check(status().not(504))
                         .check(status().in(200, 201))
         );
     }
 
+    public static ChainBuilder getSpecificGameFlow() {
+        return repeat(10).on(
+                exec(VideoGameRequests.getSpecificGame())
+                        .pause(1)
+        );
+    }
+
+    public static ChainBuilder getSpecificGameFlowJson() {
+        return repeat(10).on(
+                exec(VideoGameRequests.getSpecificGameName())
+                        .pause(1)
+        );
+    }
 
 
 

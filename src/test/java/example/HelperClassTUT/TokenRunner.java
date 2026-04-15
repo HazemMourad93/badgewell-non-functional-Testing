@@ -95,6 +95,7 @@ public class TokenRunner {
             corporateAdminTokenProcess();
             InstTwoTokenProcess();
             LearnerTokenProcess();
+            demoTokenProcess();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -294,9 +295,6 @@ public class TokenRunner {
 
 
 
-
-
-
     private static String loginAndSaveCorporateAdmin(String email, String password)  {
 
         JSONObject requestBody = new JSONObject();
@@ -358,6 +356,54 @@ public class TokenRunner {
     }
 
 
+    private static String DBGAMEloginAndSaveAdminToken(String username, String password) {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("username", username);
+        requestBody.put("password", password);
+
+        RequestSpecification request = RestAssured.given()
+                .baseUri("https://www.videogamedb.uk")
+                .basePath("/api/authenticate")
+                .contentType("application/json")
+                .accept("application/json")
+                .body(requestBody.toString());
+
+        Response response = request.post();
+
+        if (response.getStatusCode() != 200) {
+            throw new RuntimeException("Login failed with status code: " + response.getStatusCode()
+                    + ", response body: " + response.getBody().asString());
+        }
+
+        String token = response.jsonPath().getString("token");
+        if (token == null || token.isEmpty()) {
+            throw new RuntimeException("Authentication token not found in the response");
+        }
+
+        saveValueToConfig("demoToken", token, "Saved admin token 1");
+        return token;
+    }
+
+
+    public static void demoTokenProcess() {
+        // Step 1: Define or read username from config
+        String username = readValueFromConfig("videogame_admin_username");
+
+        // Step 2: Encrypt and save password if not already done
+        encryptAndSavePasswordIfNeeded("videogame_admin_encrypted_password", "admin");
+
+        // Step 3: Read and decrypt password
+        String password = readAndDecryptPassword("videogame_admin_encrypted_password");
+
+        // Step 4: Perform login and save token
+        String token = DBGAMEloginAndSaveAdminToken(username, password);
+
+        // Step 5: Read saved token from config
+        String retrievedToken = readValueFromConfig("demoToken");
+
+        // Step 6: Print token for verification
+        System.out.println("Retrieved Token: " + retrievedToken);
+    }
 
 
 
