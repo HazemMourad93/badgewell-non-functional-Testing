@@ -4,6 +4,7 @@ import io.gatling.javaapi.core.ChainBuilder;
 import scala.Function1;
 
 import java.time.Duration;
+import java.util.Map;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
@@ -110,7 +111,13 @@ public class VideoGameFlows {
         );
     }
 
+    public static ChainBuilder getGameByCustomFeederFlow() {
+        return repeat(10).on(
 
+                exec(VideoGameRequests.getGameByCustomFeeder())
+                        .pause(1)
+        );
 
+    }
 
 }

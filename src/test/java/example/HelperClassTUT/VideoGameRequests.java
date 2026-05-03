@@ -48,6 +48,12 @@ public class VideoGameRequests {
     }
 
 
+    // ✅ Custom Iterator Feeder request - GET by gameId
+    public static HttpRequestActionBuilder getGameByCustomFeeder() {
+        return http("Get video game with id - #{gameId}")
+                .get("/videogame/#{gameId}");
+    }
+
 
 
 
