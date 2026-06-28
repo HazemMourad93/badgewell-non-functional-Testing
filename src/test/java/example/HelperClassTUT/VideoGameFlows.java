@@ -87,14 +87,26 @@ public class VideoGameFlows {
 
 
 
+//    public static ChainBuilder createNewGameFlow(String token, VideoGameBody body) {
+//        return exec(
+//                VideoGameRequests.createNewGame(token, body)
+//                        .check(status().not(404))
+//                        .check(status().not(500))
+//                        .check(status().not(504))
+//                        .check(status().in(200, 201))
+//        );
+//    }
+
+
     public static ChainBuilder createNewGameFlow(String token, VideoGameBody body) {
-        return exec(
-                VideoGameRequests.createNewGame(token, body)
-                        .check(status().not(404))
-                        .check(status().not(500))
-                        .check(status().not(504))
-                        .check(status().in(200, 201))
-        );
+        return feed(VideoGameFeeder.customFeeder())
+                .exec(
+                        VideoGameRequests.createNewGame(token,body)
+                                .check(status().not(404))
+                                .check(status().not(500))
+                                .check(status().not(504))
+                                .check(status().in(200, 201))
+                );
     }
 
     public static ChainBuilder getSpecificGameFlow() {
@@ -119,5 +131,13 @@ public class VideoGameFlows {
         );
 
     }
+
+
+    // ── new flow ───────────────────────────────────────────────────────────────
+    /**
+     * Feeds a random gameId (1-10) from the custom feeder,
+     * then fires a GET /videogame/#{gameId} request with standard checks.
+     */
+
 
 }

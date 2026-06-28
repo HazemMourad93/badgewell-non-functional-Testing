@@ -1,3 +1,4 @@
+io\gatling\tut\LoadSimulation.class
 io\gatling\tut\VIDEODB.class
 io\gatling\tut\VIDEOCOUNTER.class
 io\gatling\tut\RecordedSimulation.class
@@ -7,9 +8,11 @@ io\gatling\tut\MyFirstTest.class
 io\gatling\tut\VIDEODBRESPCODE.class
 io\gatling\tut\csv_simulation.class
 example\HelperClassTUT\VideoGameFlows.class
+io\gatling\tut\ComplexFeeder$1.class
 io\gatling\tut\RecordedSimulationProxy.class
-io\gatling\tut\CustomFeeder.class
+example\HelperClassTUT\VideoGameFeeder.class
 io\gatling\tut\VIDEOCOUNTERDURATION.class
 example\HelperClassTUT\VideoGameRequests.class
 example\BasicSimulation.class
 io\gatling\tut\json_simulation.class
+io\gatling\tut\ComplexFeeder.class

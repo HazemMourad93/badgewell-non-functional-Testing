@@ -23,7 +23,13 @@ public class VIDEODB extends Simulation {
 
     {
         setUp(
-                scn.injectOpen(atOnceUsers(1))
+                scn.injectOpen(
+
+                        nothingFor(1), // 1
+                        atOnceUsers(10), // 2
+                        rampUsers(10).during(5)
+
+                )
         ).protocols(HttpConfig.baseConfig());
     }
 
