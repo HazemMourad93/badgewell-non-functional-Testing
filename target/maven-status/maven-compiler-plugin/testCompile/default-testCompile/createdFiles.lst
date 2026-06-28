@@ -8,6 +8,7 @@ io\gatling\tut\VIDEODBRESPCODE.class
 io\gatling\tut\csv_simulation.class
 example\HelperClassTUT\VideoGameFlows.class
 io\gatling\tut\RecordedSimulationProxy.class
+io\gatling\tut\CustomFeeder.class
 io\gatling\tut\VIDEOCOUNTERDURATION.class
 example\HelperClassTUT\VideoGameRequests.class
 example\BasicSimulation.class
