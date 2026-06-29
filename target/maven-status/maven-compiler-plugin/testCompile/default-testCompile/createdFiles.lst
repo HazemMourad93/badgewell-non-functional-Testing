@@ -1,6 +1,8 @@
 io\gatling\tut\LoadSimulation.class
 io\gatling\tut\VIDEODB.class
 io\gatling\tut\VIDEOCOUNTER.class
+example\BadgewellAPIs\LearningSessionsFlows.class
+io\gatling\tut\BadgewellSessionsScenario.class
 io\gatling\tut\RecordedSimulation.class
 example\HelperClassTUT\HttpConfig.class
 io\gatling\tut\VIDEODBJMEPATH.class
@@ -16,3 +18,4 @@ example\HelperClassTUT\VideoGameRequests.class
 example\BasicSimulation.class
 io\gatling\tut\json_simulation.class
 io\gatling\tut\ComplexFeeder.class
+example\BadgewellAPIs\LearningSessionsRequests.class
