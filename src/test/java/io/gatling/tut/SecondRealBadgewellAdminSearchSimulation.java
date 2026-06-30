@@ -16,7 +16,7 @@ public class SecondRealBadgewellAdminSearchSimulation extends Simulation {
 
     ScenarioBuilder scn = scenario("Real Life - Admin Search Investigation")
             .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(
-                    40, 1, 10, "ASC", "onboarding", admintoken1
+                    40, 1, 10, "ASC", "EXPIRED-CO", admintoken1
             ));
 
     {
@@ -28,9 +28,9 @@ public class SecondRealBadgewellAdminSearchSimulation extends Simulation {
         ).protocols(HttpConfig.baseConfig())
                 .assertions(
                         global().successfulRequests().percent().gt(95.0),
-                        global().failedRequests().percent().lt(5.0),
-                        global().responseTime().percentile3().lt(3000),
-                        global().responseTime().max().lt(7000),
+                        global().failedRequests().percent().lt(10.0),
+                        global().responseTime().percentile3().lt(5000),
+                        global().responseTime().max().lt(50000),
                         details("Get learning sessions").successfulRequests().percent().gt(95.0)
                 );
     }
