@@ -17,7 +17,7 @@ public class BadgewellSessionsScenario extends Simulation {
             .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(
                     40,
                     1,
-                    500,
+                    10,
                     "ASC",
                     "9y9",
                     admintoken1

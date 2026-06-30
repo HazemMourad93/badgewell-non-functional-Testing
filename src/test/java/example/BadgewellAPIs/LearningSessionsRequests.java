@@ -20,7 +20,11 @@ public class LearningSessionsRequests {
                 .queryParam("limit", limit)
                 .queryParam("sortType", sortType)
                 .queryParam("search", search)
-                .header("accept", "application/json")
-                .header("Authorization", "Bearer " + token);
+                .header("Authorization", "Bearer " + token)
+                .header("Accept", "application/json");
     }
+
+
+
+
 }

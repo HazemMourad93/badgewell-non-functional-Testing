@@ -7,6 +7,7 @@ io\gatling\tut\RecordedSimulation.class
 example\HelperClassTUT\HttpConfig.class
 io\gatling\tut\VIDEODBJMEPATH.class
 io\gatling\tut\MyFirstTest.class
+example\BadgewellAPIs\HttpConfig.class
 io\gatling\tut\VIDEODBRESPCODE.class
 io\gatling\tut\csv_simulation.class
 example\HelperClassTUT\VideoGameFlows.class

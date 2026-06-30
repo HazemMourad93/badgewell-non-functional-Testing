@@ -1,15 +1,22 @@
 package example.HelperClassTUT;
-
-import static io.gatling.javaapi.http.HttpDsl.http;
-
-import io.gatling.javaapi.core.ProtocolBuilder;
+import io.gatling.javaapi.http.HttpProtocolBuilder;
 import org.jspecify.annotations.NonNull;
+
+import static io.gatling.javaapi.http.HttpDsl.*;
 
 public class HttpConfig {
 
-    public static @NonNull ProtocolBuilder baseConfig() {
+    public static @NonNull HttpProtocolBuilder baseConfig() {
+
         return http
-                .baseUrl("https://videogamedb.uk/api")
-                .acceptHeader("application/json");
+                .baseUrl("https://badgewell-crm-release-app-z667sx5a2q-ey.a.run.app")
+                .acceptHeader("application/json; charset=UTF-8");
+
+
     }
+
+
+
+
+
 }

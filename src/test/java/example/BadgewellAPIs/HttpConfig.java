@@ -11,7 +11,7 @@ public class HttpConfig {
 
         return http
                 .baseUrl("https://badgewell-crm-release-app-z667sx5a2q-ey.a.run.app")
-                .acceptHeader("application/json");
+                .acceptHeader("application/json; charset=UTF-8");
 
 
     }
