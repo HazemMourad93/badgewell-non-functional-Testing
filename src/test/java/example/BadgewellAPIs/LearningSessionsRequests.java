@@ -8,7 +8,7 @@ public class LearningSessionsRequests {
 
     public static HttpRequestActionBuilder getLearningSessions(
             int organizationId,
-            int page,
+            Object page,
             int limit,
             String sortType,
             String search,

@@ -24,7 +24,11 @@ public class LearningSessionsFlows {
                 LearningSessionsRequests.getLearningSessions(
                         organizationId, page, limit, sortType, search, token
                 ).check(
-                        status().is(200)
+                        status().is(200),
+                        status().not(500),
+                        status().not(503),
+                        status().not(504)
+
                 )
         ).pause(Duration.ofMillis(4000));
     }
