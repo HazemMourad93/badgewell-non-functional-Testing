@@ -17,7 +17,7 @@ public class BadgewellAdminWorkdaySoakSimulation extends Simulation {
 
     ScenarioBuilder scn = scenario("Real Life - Admin Workday Soak")
             .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(
-                    40, 1, 10, "ASC", "", admintoken1
+                    40, 1, 10, "ASC", "9y9", admintoken1
             ));
 
     {

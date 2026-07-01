@@ -16,9 +16,9 @@ public class BadgewellAdminSortToggleSimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
 
     ScenarioBuilder scn = scenario("Real Life - Admin Sort Toggle")
-            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "ASC", "", admintoken1))
+            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "ASC", "EX", admintoken1))
             .pause(Duration.ofSeconds(2))
-            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "DESC", "", admintoken1));
+            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "DESC", "9y9", admintoken1));
 
     {
         setUp(

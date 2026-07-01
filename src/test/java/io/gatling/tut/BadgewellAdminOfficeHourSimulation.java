@@ -16,16 +16,16 @@ public class BadgewellAdminOfficeHourSimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
 
     ScenarioBuilder defaultList = scenario("Admin Default List")
-            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "ASC", "", admintoken1));
+            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "ASC", "EX", admintoken1));
 
     ScenarioBuilder searchFlow = scenario("Admin Search Flow")
-            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "ASC", "onboarding", admintoken1));
+            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "ASC", "EX", admintoken1));
 
     ScenarioBuilder paginationFlow = scenario("Admin Pagination Flow")
-            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 2, 10, "ASC", "", admintoken1));
+            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 2, 10, "ASC", "EX", admintoken1));
 
     ScenarioBuilder sortFlow = scenario("Admin Sort Flow")
-            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "DESC", "", admintoken1));
+            .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(40, 1, 10, "DESC", "EX", admintoken1));
 
     {
         setUp(

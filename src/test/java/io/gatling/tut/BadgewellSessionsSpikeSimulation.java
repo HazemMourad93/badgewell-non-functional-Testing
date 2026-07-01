@@ -21,7 +21,7 @@ public class BadgewellSessionsSpikeSimulation extends Simulation {
 
     ScenarioBuilder scn = scenario("Spike - Admin Learning Sessions")
             .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(
-                    40, 1, 10, "ASC", "", admintoken1
+                    40, 1, 10, "ASC", "9y9", admintoken1
             ));
 
     private SetUp setUpScenario(ScenarioBuilder scenarioBuilder) {

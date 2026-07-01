@@ -17,7 +17,7 @@ public class BadgewellAdminLargePageSimulation extends Simulation {
 
     ScenarioBuilder scn = scenario("Real Life - Admin Large Page Review")
             .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(
-                    40, 1, 500, "ASC", "", admintoken1
+                    40, 1, 500, "ASC", "EX", admintoken1
             ));
 
     {
