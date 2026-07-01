@@ -16,7 +16,7 @@ public class FirstRealScenarioBadgewellAdminMorningCheckSimulation extends Simul
 
     ScenarioBuilder scn = scenario("Real Life - Admin Morning Check")
             .exec(LearningSessionsFlows.getLearningSessionsBasicFlow(
-                    40, 1, 10, "ASC", "", admintoken1
+                    40, 1, 10, "ASC", "EX", admintoken1
             ));
 
     {
