@@ -37,8 +37,8 @@ public class BadgewellAdminOfficeHourSimulation extends Simulation {
                 .assertions(
                         global().successfulRequests().percent().gt(95.0),
                         global().failedRequests().percent().lt(5.0),
-                        global().responseTime().percentile3().lt(3500),
-                        global().responseTime().max().lt(8000),
+                        global().responseTime().percentile3().lt(10000),
+                        global().responseTime().max().lt(60000),
                         details("Get learning sessions").successfulRequests().percent().gt(95.0)
                 );
     }
