@@ -11,6 +11,8 @@ import java.time.Duration;
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.core.OpenInjectionStep.*;
 
+//- badgewelladminlargepagesimulation-20260705103025951   (1)
+
 public class BadgewellAdminLargePageSimulation extends Simulation {
 
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
