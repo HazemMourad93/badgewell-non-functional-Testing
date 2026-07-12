@@ -11,6 +11,9 @@ import java.time.Duration;
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.core.OpenInjectionStep.*;
 
+
+///badgewelladminofficehoursimulation-20260712112005011 (2)
+
 public class BadgewellAdminOfficeHourSimulation extends Simulation {
 
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
