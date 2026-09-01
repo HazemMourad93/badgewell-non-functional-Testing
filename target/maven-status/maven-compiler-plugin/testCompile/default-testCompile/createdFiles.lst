@@ -1,6 +1,7 @@
 io\gatling\tut\BadgewellSessionsSpikeSimulation.class
 io\gatling\tut\BadgewellAdminPreSessionRushSimulation.class
 io\gatling\tut\BadgewellAdminOfficeHourSimulation.class
+example\THLAPIs\HttpConfig.class
 io\gatling\tut\BadgewellAdminLargePageSimulation.class
 io\gatling\tut\BadgewellSessionsCapacitySimulation.class
 io\gatling\tut\FirstRealScenarioBadgewellAdminMorningCheckSimulation.class

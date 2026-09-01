@@ -13,6 +13,14 @@ import java.util.Properties;
 public class TokenRunner {
 
     private static final String CONFIG_FILE = "src/test/resources/config.properties";
+    private static final String TALENT_HUB_STAGING_URI =
+            "https://talent-hub-lite-dev-server-rvq7gueufa-oa.a.run.app";
+    private static final String TALENT_HUB_PRODUCTION_URI =
+            "https://talent-hub-lite-prod-server-1091763260278.europe-west6.run.app";
+    private static final String TALENT_HUB_SIGN_IN_PATH = "/api/v1/auth/signin";
+    private static final String EGC_DEV_URI =
+            "https://egc-dev-server-440410785361.europe-west6.run.app";
+    private static final String EGC_LOGIN_PATH = "/api/v1/auth/login";
 
     public static void adminTokenProcess()  {
         String email = readValueFromConfig("admin_email");
@@ -81,12 +89,6 @@ public class TokenRunner {
 
 
 
-
-
-
-
-
-
     public static void main(String[] args) {
         try {
             adminTokenProcess();
@@ -96,6 +98,12 @@ public class TokenRunner {
             InstTwoTokenProcess();
             LearnerTokenProcess();
             demoTokenProcess();
+            CandidategenerateStagingToken();
+            generateStagingToken();
+            generateStagingTokenTwo();
+            generateProductionToken();
+            SADMNgenerateEGCServerDevToken();
+            ADMNgenerateEGCServerDevToken();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -403,6 +411,152 @@ public class TokenRunner {
 
         // Step 6: Print token for verification
         System.out.println("Retrieved Token: " + retrievedToken);
+    }
+
+    public static void CandidategenerateStagingToken() {
+        generateTalentHubToken(
+                "candemail",
+                "CandIencryptedPassword",
+                "123456789",
+                TALENT_HUB_STAGING_URI,
+                "candtoken",
+                "Staging candidate token"
+        );
+    }
+
+    public static void generateStagingToken() {
+        generateTalentHubToken(
+                "email",
+                "encryptedPassword",
+                "Roadstar1988",
+                TALENT_HUB_STAGING_URI,
+                "admintoken1",
+                "Staging token"
+        );
+    }
+
+    public static void generateStagingTokenTwo() {
+        generateTalentHubToken(
+                "Second_email",
+                "SeconDencryptedPassword",
+                "123456789",
+                TALENT_HUB_STAGING_URI,
+                "admintokenorg2",
+                "Second staging token"
+        );
+    }
+
+    public static void generateProductionToken() {
+        generateTalentHubToken(
+                "email",
+                "prodEncryptedPassword",
+                "Roadstar1988",
+                TALENT_HUB_PRODUCTION_URI,
+                "productionToken",
+                "Production token"
+        );
+    }
+
+    public static void SADMNgenerateEGCServerDevToken() {
+        generateEgcToken(
+                "SAEGCUserName",
+                "SAEGCEncryptedPass",
+                "123456789",
+                "egcServerDevToken",
+                "Super Admin EGC Server Dev token"
+        );
+    }
+
+    public static void ADMNgenerateEGCServerDevToken() {
+        generateEgcToken(
+                "AEGCUserName",
+                "AEGCEncryptedPass",
+                "123456789",
+                "AegcServerDevToken",
+                "Admin EGC Server Dev token"
+        );
+    }
+
+    private static void generateTalentHubToken(
+            String emailKey,
+            String encryptedPasswordKey,
+            String plainPassword,
+            String baseUri,
+            String tokenKey,
+            String tokenLabel
+    ) {
+        String email = readValueFromConfig(emailKey);
+        encryptAndSavePasswordIfNeeded(encryptedPasswordKey, plainPassword);
+        String password = readAndDecryptPassword(encryptedPasswordKey);
+        loginAndSaveToken(email, password, baseUri, TALENT_HUB_SIGN_IN_PATH, tokenKey);
+        System.out.println(tokenLabel + " generated and saved successfully");
+    }
+
+    private static String loginAndSaveToken(
+            String email,
+            String password,
+            String baseUri,
+            String path,
+            String tokenKey
+    ) {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("userNameOrEmail", email);
+        requestBody.put("password", password);
+
+        Response response = RestAssured.given()
+                .baseUri(baseUri)
+                .basePath(path)
+                .contentType("application/json")
+                .accept("application/json")
+                .body(requestBody.toString())
+                .post();
+
+        if (response.getStatusCode() != 200) {
+            throw new RuntimeException("Login failed with status code: " + response.getStatusCode());
+        }
+
+        return extractAndSaveToken(response, "data.accessToken", tokenKey);
+    }
+
+    private static void generateEgcToken(
+            String usernameKey,
+            String encryptedPasswordKey,
+            String plainPassword,
+            String tokenKey,
+            String tokenLabel
+    ) {
+        String username = readValueFromConfig(usernameKey);
+        encryptAndSavePasswordIfNeeded(encryptedPasswordKey, plainPassword);
+        String password = readAndDecryptPassword(encryptedPasswordKey);
+
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("username", username);
+        requestBody.put("password", password);
+
+        Response response = RestAssured.given()
+                .baseUri(EGC_DEV_URI)
+                .basePath(EGC_LOGIN_PATH)
+                .contentType("application/json")
+                .accept("application/json")
+                .body(requestBody.toString())
+                .post();
+
+        if (response.getStatusCode() != 201) {
+            throw new RuntimeException("Login failed with status code: " + response.getStatusCode());
+        }
+
+        extractAndSaveToken(response, "data.accessToken", tokenKey);
+        System.out.println(tokenLabel + " generated and saved successfully");
+    }
+
+    private static String extractAndSaveToken(Response response, String jsonPath, String tokenKey) {
+        String token = response.jsonPath().getString(jsonPath);
+        if (token == null || token.isEmpty()) {
+            throw new RuntimeException("Authentication token not found in the response");
+        }
+
+        saveValueToConfig(tokenKey, token, "Saved token: " + tokenKey);
+        return token;
     }
 
 
