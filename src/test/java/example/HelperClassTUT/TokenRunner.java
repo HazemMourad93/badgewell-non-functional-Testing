@@ -91,19 +91,19 @@ public class TokenRunner {
 
     public static void main(String[] args) {
         try {
-            adminTokenProcess();
-            adminTokenProcess2();
-            InstOneTokenProcess();
-            corporateAdminTokenProcess();
-            InstTwoTokenProcess();
-            LearnerTokenProcess();
-            demoTokenProcess();
+//            adminTokenProcess();
+//            adminTokenProcess2();
+//            InstOneTokenProcess();
+//            corporateAdminTokenProcess();
+//            InstTwoTokenProcess();
+//            LearnerTokenProcess();
+//            demoTokenProcess();
             CandidategenerateStagingToken();
             generateStagingToken();
             generateStagingTokenTwo();
             generateProductionToken();
-            SADMNgenerateEGCServerDevToken();
-            ADMNgenerateEGCServerDevToken();
+//            SADMNgenerateEGCServerDevToken();
+//            ADMNgenerateEGCServerDevToken();
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -437,7 +437,7 @@ public class TokenRunner {
 
     public static void generateStagingTokenTwo() {
         generateTalentHubToken(
-                "Second_email",
+                "admin_email_2",
                 "SeconDencryptedPassword",
                 "123456789",
                 TALENT_HUB_STAGING_URI,
