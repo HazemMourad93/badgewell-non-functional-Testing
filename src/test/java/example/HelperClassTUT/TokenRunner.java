@@ -15,13 +15,16 @@ public class TokenRunner {
     private static final String CONFIG_FILE = "src/test/resources/config.properties";
     private static final String TALENT_HUB_STAGING_URI =
             "https://talent-hub-lite-dev-server-rvq7gueufa-oa.a.run.app";
-    private static final String TALENT_HUB_PRODUCTION_URI =
-            "https://talent-hub-lite-prod-server-1091763260278.europe-west6.run.app";
+//    Unused by the THL interview simulations.
+//    private static final String TALENT_HUB_PRODUCTION_URI =
+//            "https://talent-hub-lite-prod-server-1091763260278.europe-west6.run.app";
     private static final String TALENT_HUB_SIGN_IN_PATH = "/api/v1/auth/signin";
-    private static final String EGC_DEV_URI =
-            "https://egc-dev-server-440410785361.europe-west6.run.app";
-    private static final String EGC_LOGIN_PATH = "/api/v1/auth/login";
+//    Unused by the THL interview simulations.
+//    private static final String EGC_DEV_URI =
+//            "https://egc-dev-server-440410785361.europe-west6.run.app";
+//    private static final String EGC_LOGIN_PATH = "/api/v1/auth/login";
 
+    /* Unused legacy Badgewell token flows.
     public static void adminTokenProcess()  {
         String email = readValueFromConfig("admin_email");
         encryptAndSavePasswordIfNeeded("admin_encrypted_password_rc", "Roadstar1988");
@@ -85,25 +88,16 @@ public class TokenRunner {
         // Step 6: Print token for verification
         System.out.println("Retrieved Token: " + retrievedToken);
     }
+    */
 
 
 
 
     public static void main(String[] args) {
         try {
-//            adminTokenProcess();
-//            adminTokenProcess2();
-//            InstOneTokenProcess();
-//            corporateAdminTokenProcess();
-//            InstTwoTokenProcess();
-//            LearnerTokenProcess();
-//            demoTokenProcess();
             CandidategenerateStagingToken();
             generateStagingToken();
-            generateStagingTokenTwo();
-            generateProductionToken();
-//            SADMNgenerateEGCServerDevToken();
-//            ADMNgenerateEGCServerDevToken();
+
         } catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
         }
@@ -163,6 +157,7 @@ public class TokenRunner {
         }
     }
 
+    /* Private helpers used only by the commented legacy Badgewell flows.
     private static String loginAndSaveAdminToken(String email, String password)  {
         JSONObject requestBody = new JSONObject();
         requestBody.put("email", email);
@@ -331,7 +326,9 @@ public class TokenRunner {
         return token;
 
     }
+    */
 
+    /* Unused legacy Badgewell and VideoGameDB token flows.
     private static void encryptAndSavePasswordIfNeeded(String passwordKey, String plainPassword, boolean force) {
         Properties properties = new Properties();
         try (FileInputStream in = new FileInputStream(CONFIG_FILE)) {
@@ -412,6 +409,7 @@ public class TokenRunner {
         // Step 6: Print token for verification
         System.out.println("Retrieved Token: " + retrievedToken);
     }
+    */
 
     public static void CandidategenerateStagingToken() {
         generateTalentHubToken(
@@ -435,6 +433,7 @@ public class TokenRunner {
         );
     }
 
+    /* Unused secondary-staging and production token flows.
     public static void generateStagingTokenTwo() {
         generateTalentHubToken(
                 "admin_email_2",
@@ -456,7 +455,9 @@ public class TokenRunner {
                 "Production token"
         );
     }
+    */
 
+    /* Unused EGC token flows.
     public static void SADMNgenerateEGCServerDevToken() {
         generateEgcToken(
                 "SAEGCUserName",
@@ -476,6 +477,7 @@ public class TokenRunner {
                 "Admin EGC Server Dev token"
         );
     }
+    */
 
     private static void generateTalentHubToken(
             String emailKey,
@@ -518,6 +520,7 @@ public class TokenRunner {
         return extractAndSaveToken(response, "data.accessToken", tokenKey);
     }
 
+    /* Private helper used only by the commented EGC token flows.
     private static void generateEgcToken(
             String usernameKey,
             String encryptedPasswordKey,
@@ -548,6 +551,7 @@ public class TokenRunner {
         extractAndSaveToken(response, "data.accessToken", tokenKey);
         System.out.println(tokenLabel + " generated and saved successfully");
     }
+    */
 
     private static String extractAndSaveToken(Response response, String jsonPath, String tokenKey) {
         String token = response.jsonPath().getString(jsonPath);
