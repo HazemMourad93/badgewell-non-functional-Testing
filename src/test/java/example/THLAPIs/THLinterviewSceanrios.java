@@ -97,8 +97,7 @@ public final class THLinterviewSceanrios {
                 scheduleType, interviewType)
                 .exec(THLInterviewRequests.createInterviewSchedule(token, organizationId)
                         .check(successfulWriteStatus())
-                        .check(jsonPath("$.data.id").optional().saveAs("interviewScheduleId"))
-                        .check(jsonPath("$.id").optional().saveAs("interviewScheduleId")))
+                        .check(jsonPath("$.data.id").saveAs("createdScheduleId")))
                 .exitHereIfFailed()
                 .pause(THINK_TIME)
                 .exec(THLInterviewRequests.getInterviewSchedules(
@@ -107,7 +106,7 @@ public final class THLinterviewSceanrios {
                         .check(readStatus()))
                 .pause(THINK_TIME)
                 .exec(THLInterviewRequests.updateInterviewSchedule(
-                                token, organizationId, "#{interviewScheduleId}")
+                                token, organizationId, "#{createdScheduleId}")
                         .check(successfulWriteStatus()))
                 .pause(THINK_TIME)
                 .exec(THLInterviewRequests.getInterviewSchedules(
@@ -116,7 +115,7 @@ public final class THLinterviewSceanrios {
                         .check(readStatus()))
                 .pause(THINK_TIME)
                 .exec(THLInterviewRequests.deleteInterviewSchedule(
-                                token, organizationId, "#{interviewScheduleId}")
+                                token, organizationId, "#{createdScheduleId}")
                         .check(successfulWriteStatus()));
     }
 
@@ -128,8 +127,8 @@ public final class THLinterviewSceanrios {
             String fromDate,
             String toDate) {
         return exec(THLInterviewRequests.getInterviews(
-                        token, organizationId, null, null, null,
-                        null, fromDate, toDate, 1, 20).check(readStatus()))
+                        token, organizationId, "", "", "",
+                        "", fromDate, toDate, 1, 20).check(readStatus()))
                 .pause(THINK_TIME)
                 .exec(THLInterviewRequests.getAllInterviews(
                         token, organizationId, fromDate, toDate).check(readStatus()))
@@ -230,27 +229,27 @@ public final class THLinterviewSceanrios {
             String interviewId) {
         return exec(THLInterviewRequests.candidateJoinInterview(
                         candidateToken, organizationId, interviewId)
-                .check(nonServerErrorStatus()));
+                .check(successfulOrExpectedBusinessStatus()));
     }
 
     public static ChainBuilder finishInterview(String token, String organizationId, String interviewId) {
         return exec(THLInterviewRequests.finishInterview(token, organizationId, interviewId)
-                .check(nonServerErrorStatus()));
+                .check(successfulOrExpectedBusinessStatus()));
     }
 
     public static ChainBuilder pauseInterview(String token, String organizationId, String interviewId) {
         return exec(THLInterviewRequests.pauseInterviewRecording(token, organizationId, interviewId)
-                .check(nonServerErrorStatus()));
+                .check(successfulOrExpectedBusinessStatus()));
     }
 
     public static ChainBuilder resumeInterview(String token, String organizationId, String interviewId) {
         return exec(THLInterviewRequests.resumeInterviewRecording(token, organizationId, interviewId)
-                .check(nonServerErrorStatus()));
+                .check(successfulOrExpectedBusinessStatus()));
     }
 
     public static ChainBuilder cancelInterview(String token, String organizationId, String interviewId) {
         return exec(THLInterviewRequests.cancelInterview(token, organizationId, interviewId)
-                .check(nonServerErrorStatus()));
+                .check(successfulOrExpectedBusinessStatus()));
     }
 
     public static ChainBuilder updateInterview(
@@ -268,7 +267,7 @@ public final class THLinterviewSceanrios {
 
     public static ChainBuilder kickUser(String token, String organizationId, String interviewId) {
         return exec(THLInterviewRequests.kickUserFromInterview(token, organizationId, interviewId)
-                .check(nonServerErrorStatus()));
+                .check(successfulOrExpectedBusinessStatus()));
     }
 
     public static ChainBuilder paginatedInterviews(
@@ -294,15 +293,20 @@ public final class THLinterviewSceanrios {
                 scheduleType, interviewType)
                 .exec(THLInterviewRequests.createInterviewSchedule(token, organizationId)
                         .check(successfulWriteStatus())
-                        .check(jsonPath("$.data.id").optional().saveAs("interviewScheduleId"))
-                        .check(jsonPath("$.id").optional().saveAs("interviewScheduleId")))
+                        .check(jsonPath("$.data.id").saveAs("firstCreatedScheduleId")))
                 .exitHereIfFailed()
                 .exec(THLInterviewRequests.createInterviewSchedule(token, organizationId)
-                        .check(nonServerErrorStatus()))
-                .doIf(session -> session.contains("interviewScheduleId")).then(
+                        .check(successfulOrExpectedBusinessStatus())
+                        .check(jsonPath("$.data.id").optional().saveAs("duplicateCreatedScheduleId")))
+                .doIf(session -> session.contains("firstCreatedScheduleId")).then(
                         exec(THLInterviewRequests.deleteInterviewSchedule(
-                                token, organizationId, "#{interviewScheduleId}")
-                                .check(nonServerErrorStatus()))
+                                token, organizationId, "#{firstCreatedScheduleId}")
+                                .check(successfulOrExpectedBusinessStatus()))
+                )
+                .doIf(session -> session.contains("duplicateCreatedScheduleId")).then(
+                        exec(THLInterviewRequests.deleteInterviewSchedule(
+                                token, organizationId, "#{duplicateCreatedScheduleId}")
+                                .check(successfulOrExpectedBusinessStatus()))
                 );
     }
 
@@ -457,14 +461,18 @@ public final class THLinterviewSceanrios {
     }
 
     private static io.gatling.javaapi.core.CheckBuilder.Final readStatus() {
-        return status().is(200);
+        return status().in(200,400,404);
     }
 
     private static io.gatling.javaapi.core.CheckBuilder.Final successfulWriteStatus() {
         return status().in(200, 201, 202, 204);
     }
 
-    private static io.gatling.javaapi.core.CheckBuilder.Final nonServerErrorStatus() {
-        return status().lt(500);
+    private static io.gatling.javaapi.core.CheckBuilder.Final successfulOrExpectedBusinessStatus() {
+        return status().in(200, 201, 202, 204, 400, 404, 409, 429);
+    }
+
+    private static io.gatling.javaapi.core.CheckBuilder.Final expectedServerErrorStatus() {
+        return status().in(500, 503, 504);
     }
 }

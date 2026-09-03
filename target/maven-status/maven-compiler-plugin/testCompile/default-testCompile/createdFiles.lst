@@ -1,6 +1,5 @@
 io\gatling\tut\BadgewellSessionsSpikeSimulation.class
 io\gatling\tut\BadgewellAdminPreSessionRushSimulation.class
-io\THLInterviewSceanrios\THLInterviewSimulationSupport.class
 io\gatling\tut\BadgewellAdminLargePageSimulation.class
 io\gatling\tut\BadgewellSessionsCapacitySimulation.class
 io\THLInterviewSceanrios\THLInterviewStressSimulation.class
