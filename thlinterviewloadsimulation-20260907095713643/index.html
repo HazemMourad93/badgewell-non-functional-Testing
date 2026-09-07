@@ -1,0 +1,1300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="style/favicon.ico">
+<link href="style/style.css" rel="stylesheet" type="text/css">
+<link href="style/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-3.7.1.slim.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/gatling.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/ellipsis.js"></script>
+<script src="js/highstock.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/stats.js"></script>
+<title>Gatling Stats - Global Information</title>
+</head>
+<body>
+<script>
+  const storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  if (storedTheme) document.documentElement.setAttribute('data-theme', storedTheme)
+
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const targetTheme = currentTheme === "light" ? "dark" : "light";
+
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+  };
+</script>
+<div class="app-container">
+<div class="frise"></div>
+<div class="head">
+  <div class="gatling-open-source">
+    <a class="gatling-logo gatling-logo-light" href="https://gatling.io" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo-light.svg"></a>
+    <a class="gatling-logo gatling-logo-dark" href="https://gatling.io" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo-dark.svg"></a>
+    <a class="gatling-documentation" href="https://gatling.io/docs/" target="_blank">Documentation</a>
+  </div>
+  <div class="nav spacer"></div>
+  <a class="enterprise" href="https://gatling.io/enterprise/next-step/" target="_blank">
+    <span class="button-text-state">Try Enterprise Edition</span>
+    <span class="button-text-hover">Try Enterprise Edition</span>
+  </a>
+  <button id="theme-toggle" class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle user interface mode">
+    <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+    <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+  </button>
+</div>
+<div class="container details">
+  <div class="nav">
+    <ul><li><a class="item" href="#RangesContainerId"><span class="nav-label">Ranges</span></a></li>
+<li><a class="item" href="#StatsContainerId"><span class="nav-label">Stats</span></a></li>
+<li><a class="item" href="#UserStartRateContainerId"><span class="nav-label">Users start rate</span></a></li>
+<li><a class="item" href="#MaxConcurrentUsersContainerId"><span class="nav-label">Concurrent users</span></a></li>
+<li><a class="item" href="#ResponseTimeDistributionContainerId"><span class="nav-label">Response time distribution</span></a></li>
+<li><a class="item" href="#ResponseTimeContainerId"><span class="nav-label">Response time percentiles</span></a></li>
+<li><a class="item" href="#RequestsContainerId"><span class="nav-label">Requests / sec</span></a></li>
+<li><a class="item" href="#ResponsesContainerId"><span class="nav-label">Responses / sec</span></a></li></ul>
+  </div>
+  <div class="cadre">
+    <div class="content">
+      <div class="content-header">
+        <div class="onglet">
+          THLInterviewLoadSimulation
+        </div>
+        <div class="sous-menu" id="sousMenu">
+          <div class="sous-menu-spacer">
+            <div class="item ouvert"><a href="index.html">Global</a></div>
+<div class="item"><a id="details_link" href="req_thl---get-inter--1534516905.html">Details</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-in">
+        <div class="container-article">
+          <div class="article">
+            
+            
+<div class="schema-container">
+
+            <div id="RangesContainerId" class="schema ranges">
+            </div>
+
+            <div class="schema polar">
+              <div id="container_number_of_requests"></div>
+            </div>
+<div class="simulation-card">
+  <div class="simulation-version-information">
+  <span class="simulation-information-title">Gatling Version</span>
+    <span class="simulation-information-item">
+      <span class="simulation-information-label">Version: </span>
+      <span>3.15.0</span>
+    </span>
+    <span class="simulation-information-item">
+      <span class="simulation-information-label">Released: </span>
+      <span>2026-02-27</span>
+    </span>
+  </div>
+  <div id="simulation-information" class="simulation-version-information">
+    <span class="simulation-information-title">Run Information</span>
+    <div class="simulation-information-container">
+      <span class="simulation-information-item">
+        <span class="simulation-information-label">Date: </span>
+        <span>2026-09-07 09:57:15 GMT</span>
+      </span>
+      <span class="simulation-information-item">
+        <span class="simulation-information-label">Duration: </span>
+        <span>3m 38s </span>
+      </span>
+      <span class="simulation-information-item">
+        <span class="simulation-information-label">Description: </span>
+        <span>&mdash;</span>
+      </span>
+
+    </div>
+  </div>
+</div>
+</div>
+<div class="statistics extensible-geant collapsed">
+    <div class="title">
+        Assertions
+    </div>
+    <table id="container_assertions" class="statistics-in extensible-geant">
+        <thead>
+            <tr>
+                <th id="assert-col-1" class="header sortable"><span>Assertion</span></th>
+                <th id="assert-col-2" class="header sortable"><span>Status</span></th>
+            </tr>
+        </thead>
+		<tbody>
+		    
+<tr>
+  <td class="error-col-1 ok total">
+    Global: percentage of successful events is greater than 95.0
+    <span class="value" style="display:none">0</span>
+  </td>
+  <td class="error-col-2 value ok total">OK</td>
+</tr>
+<tr>
+  <td class="error-col-1 ok total">
+    Global: 95th percentile of response time is less than 5000.0
+    <span class="value" style="display:none">1</span>
+  </td>
+  <td class="error-col-2 value ok total">OK</td>
+</tr>
+		</tbody>
+    </table>
+</div>
+
+                      <div id="statistics_table_container">
+                        <div id="StatsContainerId" class="statistics extensible-geant collapsed">
+                            <div class="title">
+                              <div id="statistics_title" class="title_base"><span class="title_base_stats">Stats</span><span class="expand-table">Fixed height</span><span id="toggle-stats" class="toggle-table"></span><span class="collapse-table">Full size</span></div>
+                              <div class="right">
+                                  <button class="statistics-button expand-all-button">Expand all groups</button>
+                                  <button class="statistics-button collapse-all-button">Collapse all groups</button>
+                                  <button id="statistics_full_screen" class="statistics-button" onclick="openStatisticsTableModal()"><img alt="Fullscreen" src="style/fullscreen.svg"></button>
+                              </div>
+                            </div>
+                            <div class="scrollable">
+                              <table id="container_statistics_head" class="statistics-in extensible-geant">
+                                  <thead>
+                                      <tr>
+                                          <th rowspan="2" id="col-1" class="header sortable sorted-up"><span>Requests</span></th>
+                                          <th colspan="5" class="header"><span class="executions">Executions</span></th>
+                                          <th colspan="8" class="header"><span class="response-time">Response Time (ms)</span></th>
+                                      </tr>
+                                      <tr>
+                                          <th id="col-2" class="header sortable"><span>Total</span></th>
+                                          <th id="col-3" class="header sortable"><span>OK</span></th>
+                                          <th id="col-4" class="header sortable"><span>KO</span></th>
+                                          <th id="col-5" class="header sortable"><span>% KO</span></th>
+                                          <th id="col-6" class="header sortable"><span><abbr title="Count of events per second">Cnt/s</abbr></span></th>
+                                          <th id="col-7" class="header sortable"><span>Min</span></th>
+<th id="col-8" class="header sortable"><span>50th pct</span></th>
+<th id="col-9" class="header sortable"><span>75th pct</span></th>
+<th id="col-10" class="header sortable"><span>95th pct</span></th>
+<th id="col-11" class="header sortable"><span>99th pct</span></th>
+<th id="col-12" class="header sortable"><span>Max</span></th>
+<th id="col-13" class="header sortable"><span>Mean</span></th>
+<th id="col-14" class="header sortable"><span><abbr title="Standard Deviation">Std Dev</abbr></span></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody><tr id="ROOT" >
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="ROOT" style="margin-left: 0px;" class="expand-button ">&nbsp;</span>
+        <a href="index.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-ROOT" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-ROOT')" id="stats-table-ROOT" class="ellipsed-name">All Requests</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">2450</td>
+  <td class="value ok col-3">2442</td>
+  <td class="value ko col-4">8</td>
+  <td class="value ko col-5">0.33</td>
+  <td class="value total col-6">11.19</td>
+  <td class="value total col-7">107</td>
+  <td class="value total col-8">320</td>
+  <td class="value total col-9">1074</td>
+  <td class="value total col-10">3984</td>
+  <td class="value total col-11">7540</td>
+  <td class="value total col-12">29923</td>
+  <td class="value total col-13">985</td>
+  <td class="value total col-14">2040</td>
+</tr></tbody>
+                              </table>
+                              <table id="container_statistics_body" class="statistics-in extensible-geant">
+                                  <tbody><tr id="req_thl---get-inter--1534516905" data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_thl---get-inter--1534516905" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_thl---get-inter--1534516905.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_thl---get-inter--1534516905" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_thl---get-inter--1534516905')" id="stats-table-req_thl---get-inter--1534516905" class="ellipsed-name">THL - Get interviews</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">350</td>
+  <td class="value ok col-3">349</td>
+  <td class="value ko col-4">1</td>
+  <td class="value ko col-5">0.29</td>
+  <td class="value total col-6">1.6</td>
+  <td class="value total col-7">642</td>
+  <td class="value total col-8">1175</td>
+  <td class="value total col-9">1518</td>
+  <td class="value total col-10">5410</td>
+  <td class="value total col-11">6852</td>
+  <td class="value total col-12">25456</td>
+  <td class="value total col-13">1799</td>
+  <td class="value total col-14">2418</td>
+</tr><tr id="req_thl---get-all-i--126044490" data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_thl---get-all-i--126044490" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_thl---get-all-i--126044490.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_thl---get-all-i--126044490" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_thl---get-all-i--126044490')" id="stats-table-req_thl---get-all-i--126044490" class="ellipsed-name">THL - Get all interviews</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">350</td>
+  <td class="value ok col-3">348</td>
+  <td class="value ko col-4">2</td>
+  <td class="value ko col-5">0.57</td>
+  <td class="value total col-6">1.6</td>
+  <td class="value total col-7">740</td>
+  <td class="value total col-8">1453</td>
+  <td class="value total col-9">2386</td>
+  <td class="value total col-10">7472</td>
+  <td class="value total col-11">10045</td>
+  <td class="value total col-12">29923</td>
+  <td class="value total col-13">2439</td>
+  <td class="value total col-14">2783</td>
+</tr><tr id="req_thl---get-upcom-1291427825" data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_thl---get-upcom-1291427825" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_thl---get-upcom-1291427825.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_thl---get-upcom-1291427825" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_thl---get-upcom-1291427825')" id="stats-table-req_thl---get-upcom-1291427825" class="ellipsed-name">THL - Get upcoming interviews</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">350</td>
+  <td class="value ok col-3">347</td>
+  <td class="value ko col-4">3</td>
+  <td class="value ko col-5">0.86</td>
+  <td class="value total col-6">1.6</td>
+  <td class="value total col-7">107</td>
+  <td class="value total col-8">130</td>
+  <td class="value total col-9">169</td>
+  <td class="value total col-10">2175</td>
+  <td class="value total col-11">4721</td>
+  <td class="value total col-12">20764</td>
+  <td class="value total col-13">531</td>
+  <td class="value total col-14">2017</td>
+</tr><tr id="req_thl---get-inter-628318976" data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_thl---get-inter-628318976" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_thl---get-inter-628318976.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_thl---get-inter-628318976" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_thl---get-inter-628318976')" id="stats-table-req_thl---get-inter-628318976" class="ellipsed-name">THL - Get interview by ID</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">350</td>
+  <td class="value ok col-3">350</td>
+  <td class="value ko col-4">0</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">1.6</td>
+  <td class="value total col-7">310</td>
+  <td class="value total col-8">448</td>
+  <td class="value total col-9">666</td>
+  <td class="value total col-10">3484</td>
+  <td class="value total col-11">5426</td>
+  <td class="value total col-12">6379</td>
+  <td class="value total col-13">793</td>
+  <td class="value total col-14">1071</td>
+</tr><tr id="req_thl---get-inter--1554930888" data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_thl---get-inter--1554930888" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_thl---get-inter--1554930888.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_thl---get-inter--1554930888" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_thl---get-inter--1554930888')" id="stats-table-req_thl---get-inter--1554930888" class="ellipsed-name">THL - Get interview report</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">350</td>
+  <td class="value ok col-3">348</td>
+  <td class="value ko col-4">2</td>
+  <td class="value ko col-5">0.57</td>
+  <td class="value total col-6">1.6</td>
+  <td class="value total col-7">133</td>
+  <td class="value total col-8">161</td>
+  <td class="value total col-9">205</td>
+  <td class="value total col-10">2546</td>
+  <td class="value total col-11">3905</td>
+  <td class="value total col-12">27752</td>
+  <td class="value total col-13">554</td>
+  <td class="value total col-14">2227</td>
+</tr><tr id="req_thl---send-inte--90440181" data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_thl---send-inte--90440181" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_thl---send-inte--90440181.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_thl---send-inte--90440181" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_thl---send-inte--90440181')" id="stats-table-req_thl---send-inte--90440181" class="ellipsed-name">THL - Send interview message</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">350</td>
+  <td class="value ok col-3">350</td>
+  <td class="value ko col-4">0</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">1.6</td>
+  <td class="value total col-7">162</td>
+  <td class="value total col-8">187</td>
+  <td class="value total col-9">222</td>
+  <td class="value total col-10">1115</td>
+  <td class="value total col-11">4276</td>
+  <td class="value total col-12">7313</td>
+  <td class="value total col-13">431</td>
+  <td class="value total col-14">929</td>
+</tr><tr id="req_thl---get-pagin--1335542717" data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_thl---get-pagin--1335542717" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_thl---get-pagin--1335542717.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_thl---get-pagin--1335542717" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_thl---get-pagin--1335542717')" id="stats-table-req_thl---get-pagin--1335542717" class="ellipsed-name">THL - Get paginated interview messages</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">350</td>
+  <td class="value ok col-3">350</td>
+  <td class="value ko col-4">0</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">1.6</td>
+  <td class="value total col-7">130</td>
+  <td class="value total col-8">152</td>
+  <td class="value total col-9">178</td>
+  <td class="value total col-10">1502</td>
+  <td class="value total col-11">4287</td>
+  <td class="value total col-12">4626</td>
+  <td class="value total col-13">345</td>
+  <td class="value total col-14">761</td>
+</tr></tbody>
+                              </table>
+                            </div>
+                        </div>
+                      </div>
+<dialog id="statistics_table_modal" class="statistics-table-modal">
+  <div class="statistics-table-modal-header"><button class="button-modal" onclick="closeStatisticsTableModal()"><img alt="Close" src="style/close.svg"></button></div>
+  <div class="statistics-table-modal-container">
+    <div id="statistics_table_modal_content" class="statistics-table-modal-content"></div>
+  </div>
+</dialog>
+<div class="statistics extensible-geant collapsed">
+    <div class="title">
+        Errors
+    </div>
+    <table id="container_errors" class="statistics-in extensible-geant">
+        <thead>
+            <tr>
+                <th id="error-col-1" class="header sortable"><span>Error</span></th>
+                <th id="error-col-2" class="header sortable"><span>Count</span></th>
+                <th id="error-col-3" class="header sortable"><span>Percentage</span></th>
+            </tr>
+        </thead>
+		<tbody>
+		    
+		    <tr>
+		    	<td class="error-col-1 total ko">status.find.in(200,400,404), found 500<span class="value" style="display:none">0</span></td>
+		    	<td class="value error-col-2 total ko">8</td>
+		    	<td class="value error-col-3 total ko">100%</td>
+		    </tr>
+		</tbody>
+    </table>
+</div>
+
+            <div class="schema geant">
+              <div id="UserStartRateContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="MaxConcurrentUsersContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="ResponseTimeDistributionContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="ResponseTimeContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+                <div id="RequestsContainerId" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+                <div id="ResponsesContainerId" class="geant"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.simulation-tooltip').popover({trigger:'hover', placement:'left'});
+        
+        setActiveMenu();
+        
+Highcharts.setOptions({
+  global: { useUTC: false }
+});
+
+new Highcharts.Chart({
+  chart: {
+    renderTo: 'RangesContainerId',
+    marginRight: 100
+  },
+  credits: { enabled: false },
+  legend: { enabled: false },
+  title: {
+    text: '<span class="chart_title">Response Time Ranges</span>',
+    useHTML: true
+  },
+  xAxis: {
+    categories: [
+      "t < 800 ms",
+      "t >= 800 ms <br> t < 1200 ms",
+      "t >= 1200 ms",
+      "failed"
+    ]
+  },
+  yAxis: {
+    title: { text: 'Number of Requests' },
+    reversedStacks: false
+  },
+  tooltip: {
+    formatter: function() {
+      var s;
+      if (this.point.name) { // the pie chart
+        s = ''+ this.point.name +': '+ this.y +'% requests';
+      } else {
+        s = ''+ this.y + ' requests';
+      }
+      return s;
+    }
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal',
+      shadow: true
+    }
+  },
+  series: [
+    {
+      type: 'column',
+      data: [{
+      	color: '#68b65c',
+      	y: 1658
+      },
+      {
+      	color: '#FFDD00',
+      	y: 261
+      },
+      {
+      	color: '#FFA900',
+      	y: 523
+      },
+      {
+      	color: '#f15b4f',
+      	y: 8
+      }]
+    },
+    {
+      type: 'pie',
+      name: 'Percentages',
+      data: [
+        {
+          name: "t < 800 ms",
+          y: 67.6734693877551,
+          color: '#68b65c'
+        },
+        {
+          name: "800 ms <= t < 1200 ms",
+          y: 10.653061224489797,
+          color: '#FFDD00'
+        },
+        {
+          name: "t >= 1200 ms",
+          y: 21.346938775510203,
+          color: '#FFA900'
+        },
+        {
+          name: "failed",
+          y: 0.326530612244898,
+          color: '#f15b4f'
+        }
+      ],
+      center: [345, 0],
+      size: 90,
+      showInLegend: false,
+      dataLabels: { enabled: false }
+    }
+  ]
+});
+
+var tickInterval = 1.0;
+
+new Highcharts.Chart({
+  chart: {
+    renderTo:'container_number_of_requests',
+    polar:true,
+    type:'column',
+    height:330
+  },
+  credits:{
+    enabled:false
+  },
+  title:{
+    text:'<span class="chart_title">Number of requests</span>',
+    useHTML: true,
+    widthAdjust:-20
+  },
+  xAxis:{
+    tickmarkPlacement:'on',
+    tickInterval: tickInterval,
+    categories: ['THL - Get interviews', 'THL - Get all interviews', 'THL - Get upcoming interviews', 'THL - Get interview by ID', 'THL - Get interview report', 'THL - Send interview message', 'THL - Get paginated interview messages'],
+    labels:{ enabled:false }
+  },
+  yAxis:{
+    min:0,
+    reversedStacks: false
+  },
+  plotOptions:{
+    series:{
+      stacking:'normal',
+      groupPadding:0,
+      pointPlacement:'on',
+      shadow: true
+    }
+  },
+  legend: {
+      borderWidth: 0,
+      itemStyle: { fontWeight: "normal" },
+      symbolRadius: 0
+  },
+  series:[
+      {
+      name:'OK',
+      data:[349, 348, 347, 350, 348, 350, 350],
+      color:"#68b65c"
+    },
+    {
+      name:'KO',
+      data:[1, 2, 3, 0, 2, 0, 0],
+      color:"#f15b4f"
+    }
+  ]
+});
+
+	    $('#container_exceptions').sortable('#container_exceptions');
+    
+$('#container_statistics_head').sortable('#container_statistics_body');
+$('.statistics').expandable();
+
+$('#statistics_title span').attr('style', 'display: none;');
+
+$('.table-cell-tooltip').popover({trigger:'hover'});
+
+	    $('#container_errors').sortable('#container_errors');
+    
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'UserStartRateContainerId',
+    zoomType: 'x'
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    align: 'right',
+    verticalAlign: 'top',
+    layout: 'vertical',
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of users started per second</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis: {
+    title: { text: 'Number of users started' },
+    opposite: false,
+    min: 0
+  },
+  series: [
+    {
+color: '#5E7BE2',
+name: 'PERF-02 - THL Interview normal load',
+data: [
+  [1788775036000, 3],[1788775037000, 2],[1788775038000, 1],[1788775039000, 2],[1788775040000, 2],[1788775041000, 1],[1788775042000, 2],[1788775043000, 2],[1788775044000, 1],[1788775045000, 2],[1788775046000, 2],[1788775047000, 1],[1788775048000, 2],[1788775049000, 2],[1788775050000, 1],[1788775051000, 2],[1788775052000, 2],[1788775053000, 1],[1788775054000, 2],[1788775055000, 2],[1788775056000, 1],[1788775057000, 2],[1788775058000, 2],[1788775059000, 1],[1788775060000, 2],[1788775061000, 2],[1788775062000, 1],[1788775063000, 2],[1788775064000, 2],[1788775065000, 1],[1788775066000, 2],[1788775067000, 2],[1788775068000, 1],[1788775069000, 2],[1788775070000, 2],[1788775071000, 1],[1788775072000, 2],[1788775073000, 2],[1788775074000, 1],[1788775075000, 2],[1788775076000, 2],[1788775077000, 1],[1788775078000, 2],[1788775079000, 2],[1788775080000, 1],[1788775081000, 2],[1788775082000, 2],[1788775083000, 1],[1788775084000, 2],[1788775085000, 2],[1788775086000, 1],[1788775087000, 2],[1788775088000, 2],[1788775089000, 1],[1788775090000, 2],[1788775091000, 2],[1788775092000, 1],[1788775093000, 2],[1788775094000, 2],[1788775095000, 1],[1788775096000, 2],[1788775097000, 2],[1788775098000, 1],[1788775099000, 2],[1788775100000, 2],[1788775101000, 1],[1788775102000, 2],[1788775103000, 2],[1788775104000, 1],[1788775105000, 2],[1788775106000, 2],[1788775107000, 1],[1788775108000, 2],[1788775109000, 2],[1788775110000, 1],[1788775111000, 2],[1788775112000, 2],[1788775113000, 1],[1788775114000, 2],[1788775115000, 2],[1788775116000, 1],[1788775117000, 2],[1788775118000, 2],[1788775119000, 1],[1788775120000, 2],[1788775121000, 2],[1788775122000, 1],[1788775123000, 2],[1788775124000, 2],[1788775125000, 1],[1788775126000, 2],[1788775127000, 2],[1788775128000, 1],[1788775129000, 2],[1788775130000, 2],[1788775131000, 1],[1788775132000, 2],[1788775133000, 2],[1788775134000, 1],[1788775135000, 2],[1788775136000, 2],[1788775137000, 1],[1788775138000, 2],[1788775139000, 2],[1788775140000, 1],[1788775141000, 2],[1788775142000, 2],[1788775143000, 1],[1788775144000, 2],[1788775145000, 2],[1788775146000, 1],[1788775147000, 2],[1788775148000, 2],[1788775149000, 1],[1788775150000, 2],[1788775151000, 2],[1788775152000, 1],[1788775153000, 2],[1788775154000, 2],[1788775155000, 1],[1788775156000, 2],[1788775157000, 2],[1788775158000, 1],[1788775159000, 2],[1788775160000, 2],[1788775161000, 1],[1788775162000, 2],[1788775163000, 2],[1788775164000, 1],[1788775165000, 2],[1788775166000, 2],[1788775167000, 1],[1788775168000, 2],[1788775169000, 2],[1788775170000, 1],[1788775171000, 2],[1788775172000, 2],[1788775173000, 1],[1788775174000, 2],[1788775175000, 2],[1788775176000, 1],[1788775177000, 2],[1788775178000, 2],[1788775179000, 1],[1788775180000, 2],[1788775181000, 2],[1788775182000, 1],[1788775183000, 2],[1788775184000, 2],[1788775185000, 1],[1788775186000, 2],[1788775187000, 2],[1788775188000, 1],[1788775189000, 2],[1788775190000, 2],[1788775191000, 1],[1788775192000, 2],[1788775193000, 2],[1788775194000, 1],[1788775195000, 2],[1788775196000, 2],[1788775197000, 1],[1788775198000, 2],[1788775199000, 2],[1788775200000, 1],[1788775201000, 2],[1788775202000, 2],[1788775203000, 1],[1788775204000, 2],[1788775205000, 2],[1788775206000, 1],[1788775207000, 2],[1788775208000, 2],[1788775209000, 1],[1788775210000, 2],[1788775211000, 2],[1788775212000, 1],[1788775213000, 2],[1788775214000, 2],[1788775215000, 1],[1788775216000, 2],[1788775217000, 2],[1788775218000, 1],[1788775219000, 2],[1788775220000, 2],[1788775221000, 1],[1788775222000, 2],[1788775223000, 2],[1788775224000, 1],[1788775225000, 2],[1788775226000, 2],[1788775227000, 1],[1788775228000, 2],[1788775229000, 2],[1788775230000, 1],[1788775231000, 2],[1788775232000, 2],[1788775233000, 1],[1788775234000, 2],[1788775235000, 2],[1788775236000, 1],[1788775237000, 2],[1788775238000, 2],[1788775239000, 1],[1788775240000, 2],[1788775241000, 2],[1788775242000, 1],[1788775243000, 2],[1788775244000, 2],[1788775245000, 0],[1788775246000, 0],[1788775247000, 0],[1788775248000, 0],[1788775249000, 0],[1788775250000, 0],[1788775251000, 0],[1788775252000, 0],[1788775253000, 0],[1788775254000, 0]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+},
+    {
+color: '#FFA900',
+name: 'All users',
+data: [
+  [1788775036000, 3],[1788775037000, 2],[1788775038000, 1],[1788775039000, 2],[1788775040000, 2],[1788775041000, 1],[1788775042000, 2],[1788775043000, 2],[1788775044000, 1],[1788775045000, 2],[1788775046000, 2],[1788775047000, 1],[1788775048000, 2],[1788775049000, 2],[1788775050000, 1],[1788775051000, 2],[1788775052000, 2],[1788775053000, 1],[1788775054000, 2],[1788775055000, 2],[1788775056000, 1],[1788775057000, 2],[1788775058000, 2],[1788775059000, 1],[1788775060000, 2],[1788775061000, 2],[1788775062000, 1],[1788775063000, 2],[1788775064000, 2],[1788775065000, 1],[1788775066000, 2],[1788775067000, 2],[1788775068000, 1],[1788775069000, 2],[1788775070000, 2],[1788775071000, 1],[1788775072000, 2],[1788775073000, 2],[1788775074000, 1],[1788775075000, 2],[1788775076000, 2],[1788775077000, 1],[1788775078000, 2],[1788775079000, 2],[1788775080000, 1],[1788775081000, 2],[1788775082000, 2],[1788775083000, 1],[1788775084000, 2],[1788775085000, 2],[1788775086000, 1],[1788775087000, 2],[1788775088000, 2],[1788775089000, 1],[1788775090000, 2],[1788775091000, 2],[1788775092000, 1],[1788775093000, 2],[1788775094000, 2],[1788775095000, 1],[1788775096000, 2],[1788775097000, 2],[1788775098000, 1],[1788775099000, 2],[1788775100000, 2],[1788775101000, 1],[1788775102000, 2],[1788775103000, 2],[1788775104000, 1],[1788775105000, 2],[1788775106000, 2],[1788775107000, 1],[1788775108000, 2],[1788775109000, 2],[1788775110000, 1],[1788775111000, 2],[1788775112000, 2],[1788775113000, 1],[1788775114000, 2],[1788775115000, 2],[1788775116000, 1],[1788775117000, 2],[1788775118000, 2],[1788775119000, 1],[1788775120000, 2],[1788775121000, 2],[1788775122000, 1],[1788775123000, 2],[1788775124000, 2],[1788775125000, 1],[1788775126000, 2],[1788775127000, 2],[1788775128000, 1],[1788775129000, 2],[1788775130000, 2],[1788775131000, 1],[1788775132000, 2],[1788775133000, 2],[1788775134000, 1],[1788775135000, 2],[1788775136000, 2],[1788775137000, 1],[1788775138000, 2],[1788775139000, 2],[1788775140000, 1],[1788775141000, 2],[1788775142000, 2],[1788775143000, 1],[1788775144000, 2],[1788775145000, 2],[1788775146000, 1],[1788775147000, 2],[1788775148000, 2],[1788775149000, 1],[1788775150000, 2],[1788775151000, 2],[1788775152000, 1],[1788775153000, 2],[1788775154000, 2],[1788775155000, 1],[1788775156000, 2],[1788775157000, 2],[1788775158000, 1],[1788775159000, 2],[1788775160000, 2],[1788775161000, 1],[1788775162000, 2],[1788775163000, 2],[1788775164000, 1],[1788775165000, 2],[1788775166000, 2],[1788775167000, 1],[1788775168000, 2],[1788775169000, 2],[1788775170000, 1],[1788775171000, 2],[1788775172000, 2],[1788775173000, 1],[1788775174000, 2],[1788775175000, 2],[1788775176000, 1],[1788775177000, 2],[1788775178000, 2],[1788775179000, 1],[1788775180000, 2],[1788775181000, 2],[1788775182000, 1],[1788775183000, 2],[1788775184000, 2],[1788775185000, 1],[1788775186000, 2],[1788775187000, 2],[1788775188000, 1],[1788775189000, 2],[1788775190000, 2],[1788775191000, 1],[1788775192000, 2],[1788775193000, 2],[1788775194000, 1],[1788775195000, 2],[1788775196000, 2],[1788775197000, 1],[1788775198000, 2],[1788775199000, 2],[1788775200000, 1],[1788775201000, 2],[1788775202000, 2],[1788775203000, 1],[1788775204000, 2],[1788775205000, 2],[1788775206000, 1],[1788775207000, 2],[1788775208000, 2],[1788775209000, 1],[1788775210000, 2],[1788775211000, 2],[1788775212000, 1],[1788775213000, 2],[1788775214000, 2],[1788775215000, 1],[1788775216000, 2],[1788775217000, 2],[1788775218000, 1],[1788775219000, 2],[1788775220000, 2],[1788775221000, 1],[1788775222000, 2],[1788775223000, 2],[1788775224000, 1],[1788775225000, 2],[1788775226000, 2],[1788775227000, 1],[1788775228000, 2],[1788775229000, 2],[1788775230000, 1],[1788775231000, 2],[1788775232000, 2],[1788775233000, 1],[1788775234000, 2],[1788775235000, 2],[1788775236000, 1],[1788775237000, 2],[1788775238000, 2],[1788775239000, 1],[1788775240000, 2],[1788775241000, 2],[1788775242000, 1],[1788775243000, 2],[1788775244000, 2],[1788775245000, 0],[1788775246000, 0],[1788775247000, 0],[1788775248000, 0],[1788775249000, 0],[1788775250000, 0],[1788775251000, 0],[1788775252000, 0],[1788775253000, 0],[1788775254000, 0]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'MaxConcurrentUsersContainerId',
+    zoomType: 'x'
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    align: 'right',
+    verticalAlign: 'top',
+    layout: 'vertical',
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of concurrent users</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis: {
+    title: { text: 'Number of concurrent users' },
+    opposite: false,
+    min: 0
+  },
+  series: [
+    {
+color: '#5E7BE2',
+name: 'PERF-02 - THL Interview normal load',
+data: [
+  [1788775036000, 3],[1788775037000, 5],[1788775038000, 6],[1788775039000, 8],[1788775040000, 10],[1788775041000, 11],[1788775042000, 13],[1788775043000, 15],[1788775044000, 16],[1788775045000, 18],[1788775046000, 20],[1788775047000, 21],[1788775048000, 23],[1788775049000, 25],[1788775050000, 26],[1788775051000, 28],[1788775052000, 30],[1788775053000, 31],[1788775054000, 33],[1788775055000, 33],[1788775056000, 33],[1788775057000, 35],[1788775058000, 37],[1788775059000, 37],[1788775060000, 36],[1788775061000, 38],[1788775062000, 39],[1788775063000, 40],[1788775064000, 42],[1788775065000, 43],[1788775066000, 45],[1788775067000, 47],[1788775068000, 47],[1788775069000, 46],[1788775070000, 48],[1788775071000, 49],[1788775072000, 50],[1788775073000, 49],[1788775074000, 48],[1788775075000, 50],[1788775076000, 50],[1788775077000, 49],[1788775078000, 44],[1788775079000, 41],[1788775080000, 40],[1788775081000, 38],[1788775082000, 34],[1788775083000, 33],[1788775084000, 31],[1788775085000, 28],[1788775086000, 28],[1788775087000, 29],[1788775088000, 29],[1788775089000, 28],[1788775090000, 27],[1788775091000, 28],[1788775092000, 28],[1788775093000, 29],[1788775094000, 27],[1788775095000, 26],[1788775096000, 26],[1788775097000, 24],[1788775098000, 21],[1788775099000, 20],[1788775100000, 21],[1788775101000, 21],[1788775102000, 19],[1788775103000, 20],[1788775104000, 18],[1788775105000, 17],[1788775106000, 17],[1788775107000, 16],[1788775108000, 15],[1788775109000, 15],[1788775110000, 15],[1788775111000, 17],[1788775112000, 16],[1788775113000, 15],[1788775114000, 15],[1788775115000, 15],[1788775116000, 15],[1788775117000, 15],[1788775118000, 15],[1788775119000, 15],[1788775120000, 15],[1788775121000, 16],[1788775122000, 16],[1788775123000, 16],[1788775124000, 17],[1788775125000, 17],[1788775126000, 16],[1788775127000, 16],[1788775128000, 16],[1788775129000, 16],[1788775130000, 18],[1788775131000, 18],[1788775132000, 16],[1788775133000, 16],[1788775134000, 16],[1788775135000, 16],[1788775136000, 16],[1788775137000, 16],[1788775138000, 16],[1788775139000, 17],[1788775140000, 16],[1788775141000, 15],[1788775142000, 15],[1788775143000, 16],[1788775144000, 17],[1788775145000, 17],[1788775146000, 17],[1788775147000, 17],[1788775148000, 17],[1788775149000, 15],[1788775150000, 15],[1788775151000, 16],[1788775152000, 16],[1788775153000, 16],[1788775154000, 17],[1788775155000, 17],[1788775156000, 17],[1788775157000, 17],[1788775158000, 17],[1788775159000, 15],[1788775160000, 16],[1788775161000, 16],[1788775162000, 16],[1788775163000, 16],[1788775164000, 16],[1788775165000, 17],[1788775166000, 17],[1788775167000, 17],[1788775168000, 18],[1788775169000, 18],[1788775170000, 18],[1788775171000, 16],[1788775172000, 18],[1788775173000, 18],[1788775174000, 16],[1788775175000, 15],[1788775176000, 16],[1788775177000, 16],[1788775178000, 15],[1788775179000, 15],[1788775180000, 15],[1788775181000, 16],[1788775182000, 16],[1788775183000, 15],[1788775184000, 15],[1788775185000, 15],[1788775186000, 16],[1788775187000, 16],[1788775188000, 16],[1788775189000, 16],[1788775190000, 16],[1788775191000, 17],[1788775192000, 17],[1788775193000, 17],[1788775194000, 16],[1788775195000, 16],[1788775196000, 16],[1788775197000, 17],[1788775198000, 15],[1788775199000, 15],[1788775200000, 16],[1788775201000, 17],[1788775202000, 15],[1788775203000, 16],[1788775204000, 17],[1788775205000, 15],[1788775206000, 16],[1788775207000, 16],[1788775208000, 16],[1788775209000, 16],[1788775210000, 16],[1788775211000, 16],[1788775212000, 16],[1788775213000, 15],[1788775214000, 15],[1788775215000, 16],[1788775216000, 16],[1788775217000, 16],[1788775218000, 16],[1788775219000, 16],[1788775220000, 16],[1788775221000, 16],[1788775222000, 15],[1788775223000, 16],[1788775224000, 16],[1788775225000, 15],[1788775226000, 16],[1788775227000, 16],[1788775228000, 14],[1788775229000, 15],[1788775230000, 15],[1788775231000, 16],[1788775232000, 15],[1788775233000, 15],[1788775234000, 15],[1788775235000, 16],[1788775236000, 16],[1788775237000, 15],[1788775238000, 15],[1788775239000, 15],[1788775240000, 15],[1788775241000, 15],[1788775242000, 15],[1788775243000, 14],[1788775244000, 15],[1788775245000, 15],[1788775246000, 13],[1788775247000, 11],[1788775248000, 10],[1788775249000, 9],[1788775250000, 7],[1788775251000, 5],[1788775252000, 3],[1788775253000, 1],[1788775254000, 1]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+},
+    {
+color: '#FFA900',
+name: 'All users',
+data: [
+  [1788775036000, 3],[1788775037000, 5],[1788775038000, 6],[1788775039000, 8],[1788775040000, 10],[1788775041000, 11],[1788775042000, 13],[1788775043000, 15],[1788775044000, 16],[1788775045000, 18],[1788775046000, 20],[1788775047000, 21],[1788775048000, 23],[1788775049000, 25],[1788775050000, 26],[1788775051000, 28],[1788775052000, 30],[1788775053000, 31],[1788775054000, 33],[1788775055000, 33],[1788775056000, 33],[1788775057000, 35],[1788775058000, 37],[1788775059000, 37],[1788775060000, 36],[1788775061000, 38],[1788775062000, 39],[1788775063000, 40],[1788775064000, 42],[1788775065000, 43],[1788775066000, 45],[1788775067000, 47],[1788775068000, 47],[1788775069000, 46],[1788775070000, 48],[1788775071000, 49],[1788775072000, 50],[1788775073000, 49],[1788775074000, 48],[1788775075000, 50],[1788775076000, 50],[1788775077000, 49],[1788775078000, 44],[1788775079000, 41],[1788775080000, 40],[1788775081000, 38],[1788775082000, 34],[1788775083000, 33],[1788775084000, 31],[1788775085000, 28],[1788775086000, 28],[1788775087000, 29],[1788775088000, 29],[1788775089000, 28],[1788775090000, 27],[1788775091000, 28],[1788775092000, 28],[1788775093000, 29],[1788775094000, 27],[1788775095000, 26],[1788775096000, 26],[1788775097000, 24],[1788775098000, 21],[1788775099000, 20],[1788775100000, 21],[1788775101000, 21],[1788775102000, 19],[1788775103000, 20],[1788775104000, 18],[1788775105000, 17],[1788775106000, 17],[1788775107000, 16],[1788775108000, 15],[1788775109000, 15],[1788775110000, 15],[1788775111000, 17],[1788775112000, 16],[1788775113000, 15],[1788775114000, 15],[1788775115000, 15],[1788775116000, 15],[1788775117000, 15],[1788775118000, 15],[1788775119000, 15],[1788775120000, 15],[1788775121000, 16],[1788775122000, 16],[1788775123000, 16],[1788775124000, 17],[1788775125000, 17],[1788775126000, 16],[1788775127000, 16],[1788775128000, 16],[1788775129000, 16],[1788775130000, 18],[1788775131000, 18],[1788775132000, 16],[1788775133000, 16],[1788775134000, 16],[1788775135000, 16],[1788775136000, 16],[1788775137000, 16],[1788775138000, 16],[1788775139000, 17],[1788775140000, 16],[1788775141000, 15],[1788775142000, 15],[1788775143000, 16],[1788775144000, 17],[1788775145000, 17],[1788775146000, 17],[1788775147000, 17],[1788775148000, 17],[1788775149000, 15],[1788775150000, 15],[1788775151000, 16],[1788775152000, 16],[1788775153000, 16],[1788775154000, 17],[1788775155000, 17],[1788775156000, 17],[1788775157000, 17],[1788775158000, 17],[1788775159000, 15],[1788775160000, 16],[1788775161000, 16],[1788775162000, 16],[1788775163000, 16],[1788775164000, 16],[1788775165000, 17],[1788775166000, 17],[1788775167000, 17],[1788775168000, 18],[1788775169000, 18],[1788775170000, 18],[1788775171000, 16],[1788775172000, 18],[1788775173000, 18],[1788775174000, 16],[1788775175000, 15],[1788775176000, 16],[1788775177000, 16],[1788775178000, 15],[1788775179000, 15],[1788775180000, 15],[1788775181000, 16],[1788775182000, 16],[1788775183000, 15],[1788775184000, 15],[1788775185000, 15],[1788775186000, 16],[1788775187000, 16],[1788775188000, 16],[1788775189000, 16],[1788775190000, 16],[1788775191000, 17],[1788775192000, 17],[1788775193000, 17],[1788775194000, 16],[1788775195000, 16],[1788775196000, 16],[1788775197000, 17],[1788775198000, 15],[1788775199000, 15],[1788775200000, 16],[1788775201000, 17],[1788775202000, 15],[1788775203000, 16],[1788775204000, 17],[1788775205000, 15],[1788775206000, 16],[1788775207000, 16],[1788775208000, 16],[1788775209000, 16],[1788775210000, 16],[1788775211000, 16],[1788775212000, 16],[1788775213000, 15],[1788775214000, 15],[1788775215000, 16],[1788775216000, 16],[1788775217000, 16],[1788775218000, 16],[1788775219000, 16],[1788775220000, 16],[1788775221000, 16],[1788775222000, 15],[1788775223000, 16],[1788775224000, 16],[1788775225000, 15],[1788775226000, 16],[1788775227000, 16],[1788775228000, 14],[1788775229000, 15],[1788775230000, 15],[1788775231000, 16],[1788775232000, 15],[1788775233000, 15],[1788775234000, 15],[1788775235000, 16],[1788775236000, 16],[1788775237000, 15],[1788775238000, 15],[1788775239000, 15],[1788775240000, 15],[1788775241000, 15],[1788775242000, 15],[1788775243000, 14],[1788775244000, 15],[1788775245000, 15],[1788775246000, 13],[1788775247000, 11],[1788775248000, 10],[1788775249000, 9],[1788775250000, 7],[1788775251000, 5],[1788775252000, 3],[1788775253000, 1],[1788775254000, 1]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+}
+  ]
+});
+
+new Highcharts.Chart({
+  chart: {
+    renderTo: 'ResponseTimeDistributionContainerId',
+    type: 'column',
+    marginBottom: 60
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: 5,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Response Time Distribution</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  xAxis: {
+    categories: ['256', '554', '852', '1151', '1449', '1747', '2045', '2343', '2641', '2940', '3238', '3536', '3834', '4132', '4430', '4728', '5027', '5325', '5623', '5921', '6219', '6517', '6816', '7114', '7412', '7710', '8008', '8306', '8605', '8903', '9201', '9499', '9797', '10095', '10394', '10692', '10990', '11288', '11586', '11884', '12182', '12481', '12779', '13077', '13375', '13673', '13971', '14270', '14568', '14866', '15164', '15462', '15760', '16059', '16357', '16655', '16953', '17251', '17549', '17848', '18146', '18444', '18742', '19040', '19338', '19636', '19935', '20233', '20531', '20829', '21127', '21425', '21724', '22022', '22320', '22618', '22916', '23214', '23513', '23811', '24109', '24407', '24705', '25003', '25302', '25600', '25898', '26196', '26494', '26792', '27090', '27389', '27687', '27985', '28283', '28581', '28879', '29178', '29476', '29774'],
+    tickInterval: 20
+  },
+  yAxis: {
+    min: 0,
+    title: { text: 'Percentage of Requests' },
+    reversedStacks: false
+  },
+  tooltip: {
+    formatter: function() {
+      return '<b>'+ this.x +' ms</b><br/>'+
+      this.series.name +': '+ this.y +' %<br/>'+
+      'Total: '+ this.point.stackTotal + ' %';
+    }
+  },
+  plotOptions: {
+    series: {
+      groupPadding: 0,
+      stacking: 'normal',
+	    shadow: true
+    }
+  },
+  series: [
+  	{
+type: 'column',
+color: '#68b65c',
+name: 'OK',
+data: [
+  56.85,7.75,8.53,7.22,5.87,2.4,1.38,0.97,0.65,0.73,0.85,0.65,1.02,0.65,0.48,0.53,0.32,0.36,0.36,0.32,0.24,0.24,0.2,0.12,0.2,0.04,0.08,0.08,0.08,0.12,0.0,0.0,0.04,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.0,0.0,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.04,0.0,0.0,0.0,0.0,0.0,0.0,0.04
+],
+tooltip: { yDecimals: 0, ySuffix: 'ms' }
+},
+  	{
+type: 'column',
+color: '#f15b4f',
+name: 'KO',
+data: [
+  0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+],
+tooltip: { yDecimals: 0, ySuffix: 'ms' }
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'ResponseTimeContainerId',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  colors: ['#c4fd90', '#7ff77f', '#6ff2ad', '#61ede6', '#58c7e0', '#4ea1d4', '#487ad9', '#3f52cc', '#7335dc', '#c73905', '#FFA900'],
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title chart_title_">Response Time Percentiles over Time (OK)</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false,
+    baseSeries: 9
+  },
+  rangeSelector: {
+    rangeSelector: { align: "left" },
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#92918C',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Response Time (ms)' },
+      opposite: false
+    }
+  ],
+  plotOptions: {
+    arearange: { lineWidth: 1 },
+    series: {
+      dataGrouping: { enabled: false }
+    }
+  },
+  series: [
+  
+         {
+pointInterval: 1000,
+name: 'min',
+data: [[1788775036000, 1555], [1788775037000, 1234], [1788775038000, 1825], [1788775039000, 1757], [1788775040000, 1161], [1788775041000, 1463], [1788775042000, 2984], [1788775043000, 826], [1788775044000, 2305], [1788775045000, 1160], [1788775046000, 1381], [1788775047000, 260], [1788775048000, 142], [1788775049000, 2175], [1788775050000, 1519], [1788775051000, 478], [1788775052000, 626], [1788775053000, 1787], [1788775054000, 1232], [1788775055000, 312], [1788775056000, 3114], [1788775057000, 2864], [1788775058000, 3484], [1788775059000, 1951], [1788775060000, 3545], [1788775061000, 2653], [1788775062000, 1937], [1788775063000, 4490], [1788775064000, 974], [1788775065000, 3889], [1788775066000, 2888], [1788775067000, 2778], [1788775068000, 4509], [1788775069000, 3924], [1788775070000, 3834], [1788775071000, 2778], [1788775072000, 24748], [1788775073000, 1590], [1788775074000, 469], [1788775075000, 130], [1788775076000, 153], [1788775077000, 124], [1788775078000, 115], [1788775079000, 122], [1788775080000, 110], [1788775081000, 118], [1788775082000, 114], [1788775083000, 137], [1788775084000, 127], [1788775085000, 156], [1788775086000, 116], [1788775087000, 121], [1788775088000, 128], [1788775089000, 116], [1788775090000, 123], [1788775091000, 148], [1788775092000, 137], [1788775093000, 121], [1788775094000, 143], [1788775095000, 123], [1788775096000, 142], [1788775097000, 123], [1788775098000, 110], [1788775099000, 113], [1788775100000, 120], [1788775101000, 119], [1788775102000, 116], [1788775103000, 117], [1788775104000, 126], [1788775105000, 119], [1788775106000, 126], [1788775107000, 124], [1788775108000, 119], [1788775109000, 107], [1788775110000, 112], [1788775111000, 123], [1788775112000, 141], [1788775113000, 111], [1788775114000, 139], [1788775115000, 111], [1788775116000, 119], [1788775117000, 118], [1788775118000, 115], [1788775119000, 135], [1788775120000, 137], [1788775121000, 151], [1788775122000, 198], [1788775123000, 136], [1788775124000, 127], [1788775125000, 108], [1788775126000, 142], [1788775127000, 116], [1788775128000, 125], [1788775129000, 119], [1788775130000, 117], [1788775131000, 176], [1788775132000, 144], [1788775133000, 115], [1788775134000, 150], [1788775135000, 118], [1788775136000, 137], [1788775137000, 123], [1788775138000, 122], [1788775139000, 183], [1788775140000, 152], [1788775141000, 115], [1788775142000, 123], [1788775143000, 134], [1788775144000, 128], [1788775145000, 129], [1788775146000, 125], [1788775147000, 143], [1788775148000, 120], [1788775149000, 130], [1788775150000, 134], [1788775151000, 359], [1788775152000, 171], [1788775153000, 125], [1788775154000, 125], [1788775155000, 114], [1788775156000, 125], [1788775157000, 147], [1788775158000, 119], [1788775159000, 147], [1788775160000, 150], [1788775161000, 148], [1788775162000, 127], [1788775163000, 112], [1788775164000, 466], [1788775165000, 179], [1788775166000, 114], [1788775167000, 112], [1788775168000, 130], [1788775169000, 125], [1788775170000, 123], [1788775171000, 128], [1788775172000, 113], [1788775173000, 113], [1788775174000, 110], [1788775175000, 146], [1788775176000, 122], [1788775177000, 117], [1788775178000, 125], [1788775179000, 113], [1788775180000, 126], [1788775181000, 128], [1788775182000, 126], [1788775183000, 131], [1788775184000, 455], [1788775185000, 139], [1788775186000, 111], [1788775187000, 139], [1788775188000, 118], [1788775189000, 108], [1788775190000, 117], [1788775191000, 153], [1788775192000, 118], [1788775193000, 150], [1788775194000, 123], [1788775195000, 129], [1788775196000, 144], [1788775197000, 117], [1788775198000, 111], [1788775199000, 164], [1788775200000, 132], [1788775201000, 167], [1788775202000, 114], [1788775203000, 123], [1788775204000, 115], [1788775205000, 145], [1788775206000, 122], [1788775207000, 122], [1788775208000, 216], [1788775209000, 113], [1788775210000, 133], [1788775211000, 140], [1788775212000, 114], [1788775213000, 134], [1788775214000, 120], [1788775215000, 124], [1788775216000, 115], [1788775217000, 135], [1788775218000, 112], [1788775219000, 117], [1788775220000, 121], [1788775221000, 139], [1788775222000, 138], [1788775223000, 140], [1788775224000, 116], [1788775225000, 141], [1788775226000, 118], [1788775227000, 141], [1788775228000, 121], [1788775229000, 137], [1788775230000, 133], [1788775231000, 120], [1788775232000, 118], [1788775233000, 132], [1788775234000, 116], [1788775235000, 145], [1788775236000, 112], [1788775237000, 146], [1788775238000, 123], [1788775239000, 109], [1788775240000, 127], [1788775241000, 120], [1788775242000, 121], [1788775243000, 128], [1788775244000, 153], [1788775245000, 134], [1788775246000, 110], [1788775247000, 119], [1788775248000, 116], [1788775249000, 130], [1788775250000, 147], [1788775251000, 152], [1788775252000, 150], [1788775253000, 159], [1788775254000, 175]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 10
+},
+         {
+pointInterval: 1000,
+name: '25%',
+data: [[1788775036000, 1555], [1788775037000, 1234], [1788775038000, 1825], [1788775039000, 2569], [1788775040000, 1990], [1788775041000, 1463], [1788775042000, 4009], [1788775043000, 3102], [1788775044000, 2305], [1788775045000, 1893], [1788775046000, 1381], [1788775047000, 744], [1788775048000, 212], [1788775049000, 2546], [1788775050000, 3375], [1788775051000, 478], [1788775052000, 1938], [1788775053000, 1890], [1788775054000, 3111], [1788775055000, 731], [1788775056000, 3221], [1788775057000, 2944], [1788775058000, 3484], [1788775059000, 4096], [1788775060000, 3905], [1788775061000, 3606], [1788775062000, 2323], [1788775063000, 4490], [1788775064000, 3669], [1788775065000, 3925], [1788775066000, 3301], [1788775067000, 2995], [1788775068000, 4626], [1788775069000, 4562], [1788775070000, 3994], [1788775071000, 3046], [1788775072000, 24748], [1788775073000, 1590], [1788775074000, 670], [1788775075000, 182], [1788775076000, 322], [1788775077000, 179], [1788775078000, 193], [1788775079000, 144], [1788775080000, 148], [1788775081000, 152], [1788775082000, 157], [1788775083000, 160], [1788775084000, 143], [1788775085000, 230], [1788775086000, 156], [1788775087000, 204], [1788775088000, 159], [1788775089000, 166], [1788775090000, 132], [1788775091000, 155], [1788775092000, 183], [1788775093000, 138], [1788775094000, 153], [1788775095000, 179], [1788775096000, 151], [1788775097000, 143], [1788775098000, 149], [1788775099000, 138], [1788775100000, 178], [1788775101000, 161], [1788775102000, 176], [1788775103000, 143], [1788775104000, 156], [1788775105000, 139], [1788775106000, 153], [1788775107000, 155], [1788775108000, 146], [1788775109000, 148], [1788775110000, 144], [1788775111000, 186], [1788775112000, 160], [1788775113000, 142], [1788775114000, 160], [1788775115000, 141], [1788775116000, 171], [1788775117000, 166], [1788775118000, 138], [1788775119000, 139], [1788775120000, 199], [1788775121000, 164], [1788775122000, 473], [1788775123000, 145], [1788775124000, 156], [1788775125000, 184], [1788775126000, 166], [1788775127000, 140], [1788775128000, 159], [1788775129000, 146], [1788775130000, 216], [1788775131000, 213], [1788775132000, 180], [1788775133000, 154], [1788775134000, 171], [1788775135000, 157], [1788775136000, 183], [1788775137000, 130], [1788775138000, 158], [1788775139000, 200], [1788775140000, 165], [1788775141000, 150], [1788775142000, 349], [1788775143000, 170], [1788775144000, 133], [1788775145000, 166], [1788775146000, 152], [1788775147000, 164], [1788775148000, 148], [1788775149000, 167], [1788775150000, 170], [1788775151000, 447], [1788775152000, 349], [1788775153000, 150], [1788775154000, 150], [1788775155000, 121], [1788775156000, 156], [1788775157000, 176], [1788775158000, 152], [1788775159000, 169], [1788775160000, 171], [1788775161000, 210], [1788775162000, 152], [1788775163000, 146], [1788775164000, 567], [1788775165000, 209], [1788775166000, 147], [1788775167000, 190], [1788775168000, 332], [1788775169000, 179], [1788775170000, 141], [1788775171000, 142], [1788775172000, 232], [1788775173000, 141], [1788775174000, 143], [1788775175000, 226], [1788775176000, 149], [1788775177000, 152], [1788775178000, 139], [1788775179000, 163], [1788775180000, 152], [1788775181000, 167], [1788775182000, 146], [1788775183000, 152], [1788775184000, 721], [1788775185000, 139], [1788775186000, 136], [1788775187000, 159], [1788775188000, 146], [1788775189000, 151], [1788775190000, 137], [1788775191000, 172], [1788775192000, 155], [1788775193000, 180], [1788775194000, 144], [1788775195000, 190], [1788775196000, 155], [1788775197000, 150], [1788775198000, 137], [1788775199000, 332], [1788775200000, 158], [1788775201000, 193], [1788775202000, 172], [1788775203000, 156], [1788775204000, 154], [1788775205000, 148], [1788775206000, 153], [1788775207000, 330], [1788775208000, 485], [1788775209000, 131], [1788775210000, 162], [1788775211000, 156], [1788775212000, 143], [1788775213000, 141], [1788775214000, 150], [1788775215000, 139], [1788775216000, 164], [1788775217000, 187], [1788775218000, 141], [1788775219000, 172], [1788775220000, 164], [1788775221000, 154], [1788775222000, 161], [1788775223000, 210], [1788775224000, 145], [1788775225000, 319], [1788775226000, 150], [1788775227000, 177], [1788775228000, 150], [1788775229000, 144], [1788775230000, 175], [1788775231000, 156], [1788775232000, 141], [1788775233000, 175], [1788775234000, 148], [1788775235000, 166], [1788775236000, 129], [1788775237000, 334], [1788775238000, 143], [1788775239000, 156], [1788775240000, 155], [1788775241000, 153], [1788775242000, 155], [1788775243000, 153], [1788775244000, 194], [1788775245000, 161], [1788775246000, 141], [1788775247000, 123], [1788775248000, 150], [1788775249000, 155], [1788775250000, 170], [1788775251000, 159], [1788775252000, 150], [1788775253000, 159], [1788775254000, 175]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 9
+},
+         {
+pointInterval: 1000,
+name: '50%',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 2605], [1788775040000, 3794], [1788775041000, 6107], [1788775042000, 4714], [1788775043000, 3463], [1788775044000, 3170], [1788775045000, 2457], [1788775046000, 2277], [1788775047000, 917], [1788775048000, 2783], [1788775049000, 3100], [1788775050000, 4631], [1788775051000, 2399], [1788775052000, 2598], [1788775053000, 2404], [1788775054000, 4926], [1788775055000, 938], [1788775056000, 3484], [1788775057000, 3125], [1788775058000, 5691], [1788775059000, 5781], [1788775060000, 4184], [1788775061000, 4266], [1788775062000, 3787], [1788775063000, 4882], [1788775064000, 3890], [1788775065000, 4793], [1788775066000, 4812], [1788775067000, 6121], [1788775068000, 4721], [1788775069000, 6379], [1788775070000, 5363], [1788775071000, 5649], [1788775072000, 27752], [1788775073000, 2227], [1788775074000, 1861], [1788775075000, 1005], [1788775076000, 540], [1788775077000, 218], [1788775078000, 205], [1788775079000, 174], [1788775080000, 173], [1788775081000, 176], [1788775082000, 297], [1788775083000, 175], [1788775084000, 173], [1788775085000, 454], [1788775086000, 194], [1788775087000, 337], [1788775088000, 183], [1788775089000, 211], [1788775090000, 184], [1788775091000, 357], [1788775092000, 335], [1788775093000, 183], [1788775094000, 232], [1788775095000, 339], [1788775096000, 187], [1788775097000, 160], [1788775098000, 322], [1788775099000, 469], [1788775100000, 463], [1788775101000, 320], [1788775102000, 206], [1788775103000, 183], [1788775104000, 215], [1788775105000, 382], [1788775106000, 327], [1788775107000, 176], [1788775108000, 177], [1788775109000, 343], [1788775110000, 282], [1788775111000, 260], [1788775112000, 341], [1788775113000, 166], [1788775114000, 413], [1788775115000, 403], [1788775116000, 377], [1788775117000, 187], [1788775118000, 172], [1788775119000, 328], [1788775120000, 897], [1788775121000, 197], [1788775122000, 742], [1788775123000, 336], [1788775124000, 331], [1788775125000, 262], [1788775126000, 437], [1788775127000, 168], [1788775128000, 627], [1788775129000, 367], [1788775130000, 376], [1788775131000, 472], [1788775132000, 364], [1788775133000, 166], [1788775134000, 347], [1788775135000, 223], [1788775136000, 205], [1788775137000, 157], [1788775138000, 359], [1788775139000, 334], [1788775140000, 191], [1788775141000, 183], [1788775142000, 863], [1788775143000, 196], [1788775144000, 338], [1788775145000, 649], [1788775146000, 290], [1788775147000, 190], [1788775148000, 176], [1788775149000, 205], [1788775150000, 362], [1788775151000, 490], [1788775152000, 389], [1788775153000, 180], [1788775154000, 188], [1788775155000, 212], [1788775156000, 332], [1788775157000, 195], [1788775158000, 165], [1788775159000, 395], [1788775160000, 186], [1788775161000, 328], [1788775162000, 183], [1788775163000, 349], [1788775164000, 1073], [1788775165000, 820], [1788775166000, 308], [1788775167000, 294], [1788775168000, 1166], [1788775169000, 505], [1788775170000, 179], [1788775171000, 700], [1788775172000, 373], [1788775173000, 148], [1788775174000, 502], [1788775175000, 675], [1788775176000, 172], [1788775177000, 206], [1788775178000, 149], [1788775179000, 186], [1788775180000, 638], [1788775181000, 170], [1788775182000, 177], [1788775183000, 176], [1788775184000, 1026], [1788775185000, 162], [1788775186000, 193], [1788775187000, 358], [1788775188000, 158], [1788775189000, 327], [1788775190000, 568], [1788775191000, 193], [1788775192000, 185], [1788775193000, 283], [1788775194000, 153], [1788775195000, 392], [1788775196000, 651], [1788775197000, 175], [1788775198000, 171], [1788775199000, 406], [1788775200000, 268], [1788775201000, 1122], [1788775202000, 355], [1788775203000, 201], [1788775204000, 506], [1788775205000, 734], [1788775206000, 191], [1788775207000, 770], [1788775208000, 744], [1788775209000, 160], [1788775210000, 394], [1788775211000, 549], [1788775212000, 176], [1788775213000, 186], [1788775214000, 523], [1788775215000, 177], [1788775216000, 337], [1788775217000, 195], [1788775218000, 158], [1788775219000, 370], [1788775220000, 188], [1788775221000, 178], [1788775222000, 487], [1788775223000, 420], [1788775224000, 154], [1788775225000, 420], [1788775226000, 200], [1788775227000, 480], [1788775228000, 180], [1788775229000, 311], [1788775230000, 223], [1788775231000, 437], [1788775232000, 174], [1788775233000, 420], [1788775234000, 333], [1788775235000, 201], [1788775236000, 153], [1788775237000, 584], [1788775238000, 209], [1788775239000, 180], [1788775240000, 324], [1788775241000, 334], [1788775242000, 172], [1788775243000, 190], [1788775244000, 339], [1788775245000, 186], [1788775246000, 155], [1788775247000, 184], [1788775248000, 175], [1788775249000, 177], [1788775250000, 178], [1788775251000, 168], [1788775252000, 150], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 8
+},
+         {
+pointInterval: 1000,
+name: '75%',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 5478], [1788775040000, 6620], [1788775041000, 6107], [1788775042000, 5638], [1788775043000, 3522], [1788775044000, 3170], [1788775045000, 2593], [1788775046000, 2488], [1788775047000, 1780], [1788775048000, 3327], [1788775049000, 4374], [1788775050000, 4865], [1788775051000, 2688], [1788775052000, 4590], [1788775053000, 2769], [1788775054000, 6901], [1788775055000, 4208], [1788775056000, 4228], [1788775057000, 4632], [1788775058000, 7190], [1788775059000, 8817], [1788775060000, 5266], [1788775061000, 5084], [1788775062000, 6016], [1788775063000, 4882], [1788775064000, 5785], [1788775065000, 5426], [1788775066000, 5210], [1788775067000, 7893], [1788775068000, 6600], [1788775069000, 6852], [1788775070000, 6339], [1788775071000, 6003], [1788775072000, 29923], [1788775073000, 2227], [1788775074000, 2763], [1788775075000, 1524], [1788775076000, 800], [1788775077000, 928], [1788775078000, 300], [1788775079000, 599], [1788775080000, 190], [1788775081000, 508], [1788775082000, 780], [1788775083000, 396], [1788775084000, 476], [1788775085000, 797], [1788775086000, 460], [1788775087000, 996], [1788775088000, 957], [1788775089000, 552], [1788775090000, 822], [1788775091000, 951], [1788775092000, 1258], [1788775093000, 762], [1788775094000, 698], [1788775095000, 767], [1788775096000, 318], [1788775097000, 489], [1788775098000, 823], [1788775099000, 1225], [1788775100000, 1074], [1788775101000, 569], [1788775102000, 683], [1788775103000, 988], [1788775104000, 575], [1788775105000, 769], [1788775106000, 684], [1788775107000, 329], [1788775108000, 699], [1788775109000, 796], [1788775110000, 1147], [1788775111000, 1086], [1788775112000, 884], [1788775113000, 175], [1788775114000, 896], [1788775115000, 1057], [1788775116000, 1004], [1788775117000, 1065], [1788775118000, 412], [1788775119000, 1103], [1788775120000, 1135], [1788775121000, 394], [1788775122000, 1729], [1788775123000, 1033], [1788775124000, 1016], [1788775125000, 1129], [1788775126000, 996], [1788775127000, 211], [1788775128000, 1181], [1788775129000, 1085], [1788775130000, 580], [1788775131000, 607], [1788775132000, 1249], [1788775133000, 527], [1788775134000, 822], [1788775135000, 985], [1788775136000, 345], [1788775137000, 448], [1788775138000, 999], [1788775139000, 1241], [1788775140000, 1338], [1788775141000, 975], [1788775142000, 1380], [1788775143000, 1108], [1788775144000, 1031], [1788775145000, 1387], [1788775146000, 590], [1788775147000, 559], [1788775148000, 759], [1788775149000, 1337], [1788775150000, 1474], [1788775151000, 1247], [1788775152000, 1624], [1788775153000, 825], [1788775154000, 752], [1788775155000, 1168], [1788775156000, 423], [1788775157000, 1218], [1788775158000, 188], [1788775159000, 1286], [1788775160000, 356], [1788775161000, 1167], [1788775162000, 911], [1788775163000, 1811], [1788775164000, 1223], [1788775165000, 1139], [1788775166000, 824], [1788775167000, 341], [1788775168000, 1354], [1788775169000, 743], [1788775170000, 642], [1788775171000, 1599], [1788775172000, 1114], [1788775173000, 175], [1788775174000, 1081], [1788775175000, 845], [1788775176000, 714], [1788775177000, 674], [1788775178000, 1018], [1788775179000, 584], [1788775180000, 1047], [1788775181000, 1104], [1788775182000, 380], [1788775183000, 1819], [1788775184000, 1202], [1788775185000, 893], [1788775186000, 1211], [1788775187000, 660], [1788775188000, 654], [1788775189000, 1485], [1788775190000, 838], [1788775191000, 839], [1788775192000, 1029], [1788775193000, 533], [1788775194000, 215], [1788775195000, 1233], [1788775196000, 967], [1788775197000, 195], [1788775198000, 1126], [1788775199000, 724], [1788775200000, 334], [1788775201000, 1395], [1788775202000, 748], [1788775203000, 392], [1788775204000, 1068], [1788775205000, 910], [1788775206000, 284], [1788775207000, 848], [1788775208000, 1114], [1788775209000, 176], [1788775210000, 1243], [1788775211000, 763], [1788775212000, 399], [1788775213000, 982], [1788775214000, 740], [1788775215000, 241], [1788775216000, 887], [1788775217000, 418], [1788775218000, 1006], [1788775219000, 1154], [1788775220000, 740], [1788775221000, 670], [1788775222000, 1143], [1788775223000, 995], [1788775224000, 189], [1788775225000, 1310], [1788775226000, 755], [1788775227000, 711], [1788775228000, 1112], [1788775229000, 864], [1788775230000, 384], [1788775231000, 831], [1788775232000, 658], [1788775233000, 1456], [1788775234000, 923], [1788775235000, 731], [1788775236000, 178], [1788775237000, 1034], [1788775238000, 847], [1788775239000, 327], [1788775240000, 853], [1788775241000, 1426], [1788775242000, 832], [1788775243000, 692], [1788775244000, 778], [1788775245000, 714], [1788775246000, 696], [1788775247000, 571], [1788775248000, 320], [1788775249000, 186], [1788775250000, 227], [1788775251000, 185], [1788775252000, 348], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 7
+},
+         {
+pointInterval: 1000,
+name: '80%',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 5478], [1788775040000, 6620], [1788775041000, 6107], [1788775042000, 5638], [1788775043000, 3522], [1788775044000, 3170], [1788775045000, 2593], [1788775046000, 2488], [1788775047000, 2463], [1788775048000, 4276], [1788775049000, 4374], [1788775050000, 5229], [1788775051000, 2688], [1788775052000, 4590], [1788775053000, 2921], [1788775054000, 6901], [1788775055000, 5948], [1788775056000, 4228], [1788775057000, 4632], [1788775058000, 7190], [1788775059000, 8817], [1788775060000, 5754], [1788775061000, 5084], [1788775062000, 6200], [1788775063000, 4882], [1788775064000, 7521], [1788775065000, 5426], [1788775066000, 5210], [1788775067000, 7893], [1788775068000, 6600], [1788775069000, 7228], [1788775070000, 6339], [1788775071000, 6003], [1788775072000, 29923], [1788775073000, 2227], [1788775074000, 2763], [1788775075000, 1524], [1788775076000, 1450], [1788775077000, 1447], [1788775078000, 789], [1788775079000, 619], [1788775080000, 343], [1788775081000, 637], [1788775082000, 914], [1788775083000, 600], [1788775084000, 1393], [1788775085000, 1164], [1788775086000, 1327], [1788775087000, 1241], [1788775088000, 974], [1788775089000, 552], [1788775090000, 822], [1788775091000, 951], [1788775092000, 1258], [1788775093000, 786], [1788775094000, 805], [1788775095000, 832], [1788775096000, 748], [1788775097000, 833], [1788775098000, 937], [1788775099000, 1225], [1788775100000, 1074], [1788775101000, 890], [1788775102000, 910], [1788775103000, 1229], [1788775104000, 575], [1788775105000, 1122], [1788775106000, 776], [1788775107000, 702], [1788775108000, 1317], [1788775109000, 796], [1788775110000, 1147], [1788775111000, 1086], [1788775112000, 884], [1788775113000, 188], [1788775114000, 984], [1788775115000, 1057], [1788775116000, 1160], [1788775117000, 1065], [1788775118000, 997], [1788775119000, 1438], [1788775120000, 1184], [1788775121000, 1366], [1788775122000, 1729], [1788775123000, 1033], [1788775124000, 1016], [1788775125000, 1129], [1788775126000, 996], [1788775127000, 655], [1788775128000, 1181], [1788775129000, 1085], [1788775130000, 1522], [1788775131000, 1622], [1788775132000, 1249], [1788775133000, 723], [1788775134000, 822], [1788775135000, 985], [1788775136000, 1049], [1788775137000, 448], [1788775138000, 1576], [1788775139000, 1642], [1788775140000, 1338], [1788775141000, 975], [1788775142000, 1411], [1788775143000, 1108], [1788775144000, 1107], [1788775145000, 1387], [1788775146000, 1569], [1788775147000, 673], [1788775148000, 959], [1788775149000, 1337], [1788775150000, 1474], [1788775151000, 1571], [1788775152000, 1624], [1788775153000, 825], [1788775154000, 962], [1788775155000, 1168], [1788775156000, 954], [1788775157000, 1218], [1788775158000, 205], [1788775159000, 1391], [1788775160000, 1028], [1788775161000, 1348], [1788775162000, 911], [1788775163000, 1811], [1788775164000, 1423], [1788775165000, 1139], [1788775166000, 824], [1788775167000, 1010], [1788775168000, 1491], [1788775169000, 820], [1788775170000, 642], [1788775171000, 1599], [1788775172000, 1228], [1788775173000, 178], [1788775174000, 1081], [1788775175000, 845], [1788775176000, 714], [1788775177000, 778], [1788775178000, 1018], [1788775179000, 584], [1788775180000, 1123], [1788775181000, 1104], [1788775182000, 380], [1788775183000, 1819], [1788775184000, 1367], [1788775185000, 893], [1788775186000, 1250], [1788775187000, 660], [1788775188000, 654], [1788775189000, 1537], [1788775190000, 838], [1788775191000, 839], [1788775192000, 1087], [1788775193000, 852], [1788775194000, 215], [1788775195000, 1485], [1788775196000, 991], [1788775197000, 195], [1788775198000, 1126], [1788775199000, 1512], [1788775200000, 354], [1788775201000, 1395], [1788775202000, 1246], [1788775203000, 392], [1788775204000, 1068], [1788775205000, 959], [1788775206000, 523], [1788775207000, 989], [1788775208000, 1138], [1788775209000, 200], [1788775210000, 1252], [1788775211000, 900], [1788775212000, 399], [1788775213000, 1612], [1788775214000, 888], [1788775215000, 793], [1788775216000, 1152], [1788775217000, 798], [1788775218000, 1054], [1788775219000, 1356], [1788775220000, 740], [1788775221000, 670], [1788775222000, 1143], [1788775223000, 995], [1788775224000, 189], [1788775225000, 1310], [1788775226000, 1142], [1788775227000, 1198], [1788775228000, 1112], [1788775229000, 864], [1788775230000, 817], [1788775231000, 831], [1788775232000, 658], [1788775233000, 1456], [1788775234000, 923], [1788775235000, 1188], [1788775236000, 992], [1788775237000, 1306], [1788775238000, 847], [1788775239000, 327], [1788775240000, 903], [1788775241000, 1426], [1788775242000, 832], [1788775243000, 821], [1788775244000, 974], [1788775245000, 714], [1788775246000, 696], [1788775247000, 571], [1788775248000, 335], [1788775249000, 186], [1788775250000, 227], [1788775251000, 185], [1788775252000, 348], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 6
+},
+         {
+pointInterval: 1000,
+name: '85%',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 5478], [1788775040000, 6620], [1788775041000, 6107], [1788775042000, 5638], [1788775043000, 9772], [1788775044000, 3170], [1788775045000, 2593], [1788775046000, 2488], [1788775047000, 2463], [1788775048000, 5310], [1788775049000, 5690], [1788775050000, 5229], [1788775051000, 2688], [1788775052000, 4590], [1788775053000, 2921], [1788775054000, 6901], [1788775055000, 5948], [1788775056000, 6577], [1788775057000, 5077], [1788775058000, 7190], [1788775059000, 8817], [1788775060000, 5754], [1788775061000, 6450], [1788775062000, 6200], [1788775063000, 4882], [1788775064000, 7521], [1788775065000, 5998], [1788775066000, 5210], [1788775067000, 7893], [1788775068000, 6600], [1788775069000, 7228], [1788775070000, 6339], [1788775071000, 25456], [1788775072000, 29923], [1788775073000, 2227], [1788775074000, 2834], [1788775075000, 1524], [1788775076000, 1753], [1788775077000, 1479], [1788775078000, 1106], [1788775079000, 792], [1788775080000, 679], [1788775081000, 871], [1788775082000, 1037], [1788775083000, 1128], [1788775084000, 1425], [1788775085000, 1164], [1788775086000, 1327], [1788775087000, 1241], [1788775088000, 974], [1788775089000, 1146], [1788775090000, 1321], [1788775091000, 969], [1788775092000, 1352], [1788775093000, 786], [1788775094000, 1023], [1788775095000, 1268], [1788775096000, 748], [1788775097000, 942], [1788775098000, 937], [1788775099000, 1293], [1788775100000, 1100], [1788775101000, 890], [1788775102000, 1411], [1788775103000, 1229], [1788775104000, 730], [1788775105000, 1122], [1788775106000, 776], [1788775107000, 946], [1788775108000, 1345], [1788775109000, 996], [1788775110000, 1382], [1788775111000, 1309], [1788775112000, 982], [1788775113000, 1456], [1788775114000, 984], [1788775115000, 1197], [1788775116000, 1160], [1788775117000, 1135], [1788775118000, 997], [1788775119000, 1438], [1788775120000, 1184], [1788775121000, 1366], [1788775122000, 1729], [1788775123000, 1033], [1788775124000, 1164], [1788775125000, 1718], [1788775126000, 1034], [1788775127000, 655], [1788775128000, 1181], [1788775129000, 1457], [1788775130000, 1522], [1788775131000, 1622], [1788775132000, 1369], [1788775133000, 888], [1788775134000, 1136], [1788775135000, 1311], [1788775136000, 1185], [1788775137000, 1592], [1788775138000, 1607], [1788775139000, 1642], [1788775140000, 1436], [1788775141000, 1290], [1788775142000, 1411], [1788775143000, 1318], [1788775144000, 1107], [1788775145000, 1431], [1788775146000, 1569], [1788775147000, 920], [1788775148000, 959], [1788775149000, 1372], [1788775150000, 2013], [1788775151000, 1571], [1788775152000, 1624], [1788775153000, 969], [1788775154000, 962], [1788775155000, 1271], [1788775156000, 954], [1788775157000, 1339], [1788775158000, 1595], [1788775159000, 1588], [1788775160000, 1028], [1788775161000, 1348], [1788775162000, 1277], [1788775163000, 1880], [1788775164000, 1423], [1788775165000, 1139], [1788775166000, 1342], [1788775167000, 1180], [1788775168000, 1491], [1788775169000, 888], [1788775170000, 724], [1788775171000, 1675], [1788775172000, 1280], [1788775173000, 347], [1788775174000, 1419], [1788775175000, 1100], [1788775176000, 762], [1788775177000, 1086], [1788775178000, 1030], [1788775179000, 985], [1788775180000, 1404], [1788775181000, 1153], [1788775182000, 767], [1788775183000, 2311], [1788775184000, 1367], [1788775185000, 893], [1788775186000, 1420], [1788775187000, 849], [1788775188000, 654], [1788775189000, 1537], [1788775190000, 994], [1788775191000, 839], [1788775192000, 1365], [1788775193000, 1365], [1788775194000, 1058], [1788775195000, 1485], [1788775196000, 991], [1788775197000, 1039], [1788775198000, 1354], [1788775199000, 1512], [1788775200000, 1195], [1788775201000, 1395], [1788775202000, 1252], [1788775203000, 1422], [1788775204000, 1122], [1788775205000, 959], [1788775206000, 837], [1788775207000, 989], [1788775208000, 1138], [1788775209000, 200], [1788775210000, 1252], [1788775211000, 900], [1788775212000, 751], [1788775213000, 1612], [1788775214000, 888], [1788775215000, 793], [1788775216000, 1152], [1788775217000, 884], [1788775218000, 1054], [1788775219000, 1356], [1788775220000, 826], [1788775221000, 876], [1788775222000, 1410], [1788775223000, 1083], [1788775224000, 1105], [1788775225000, 1318], [1788775226000, 1142], [1788775227000, 1198], [1788775228000, 1165], [1788775229000, 1048], [1788775230000, 817], [1788775231000, 852], [1788775232000, 937], [1788775233000, 1958], [1788775234000, 1168], [1788775235000, 1190], [1788775236000, 1049], [1788775237000, 1306], [1788775238000, 1029], [1788775239000, 811], [1788775240000, 943], [1788775241000, 1566], [1788775242000, 1319], [1788775243000, 980], [1788775244000, 974], [1788775245000, 810], [1788775246000, 1339], [1788775247000, 571], [1788775248000, 335], [1788775249000, 329], [1788775250000, 227], [1788775251000, 185], [1788775252000, 348], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 5
+},
+         {
+pointInterval: 1000,
+name: '90%',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 5478], [1788775040000, 6620], [1788775041000, 6107], [1788775042000, 5638], [1788775043000, 9772], [1788775044000, 3170], [1788775045000, 2593], [1788775046000, 2488], [1788775047000, 2463], [1788775048000, 5310], [1788775049000, 5690], [1788775050000, 5229], [1788775051000, 2688], [1788775052000, 5188], [1788775053000, 4902], [1788775054000, 8323], [1788775055000, 6315], [1788775056000, 6577], [1788775057000, 5077], [1788775058000, 7190], [1788775059000, 8887], [1788775060000, 7377], [1788775061000, 6450], [1788775062000, 8619], [1788775063000, 4882], [1788775064000, 7540], [1788775065000, 5998], [1788775066000, 8571], [1788775067000, 10045], [1788775068000, 6602], [1788775069000, 7313], [1788775070000, 7043], [1788775071000, 25456], [1788775072000, 29923], [1788775073000, 2227], [1788775074000, 2834], [1788775075000, 1648], [1788775076000, 1791], [1788775077000, 1666], [1788775078000, 1126], [1788775079000, 1438], [1788775080000, 736], [1788775081000, 936], [1788775082000, 1200], [1788775083000, 1146], [1788775084000, 1428], [1788775085000, 1743], [1788775086000, 3025], [1788775087000, 1484], [1788775088000, 1197], [1788775089000, 1146], [1788775090000, 1321], [1788775091000, 969], [1788775092000, 1352], [1788775093000, 950], [1788775094000, 1300], [1788775095000, 1345], [1788775096000, 1100], [1788775097000, 1151], [1788775098000, 1256], [1788775099000, 1293], [1788775100000, 1110], [1788775101000, 997], [1788775102000, 1536], [1788775103000, 1281], [1788775104000, 1374], [1788775105000, 1780], [1788775106000, 1247], [1788775107000, 946], [1788775108000, 1345], [1788775109000, 996], [1788775110000, 1382], [1788775111000, 1309], [1788775112000, 982], [1788775113000, 1456], [1788775114000, 1402], [1788775115000, 1197], [1788775116000, 1610], [1788775117000, 1135], [1788775118000, 1206], [1788775119000, 2387], [1788775120000, 2827], [1788775121000, 1849], [1788775122000, 1811], [1788775123000, 1265], [1788775124000, 1996], [1788775125000, 1718], [1788775126000, 1034], [1788775127000, 705], [1788775128000, 3336], [1788775129000, 1457], [1788775130000, 1829], [1788775131000, 1789], [1788775132000, 1369], [1788775133000, 888], [1788775134000, 1136], [1788775135000, 1311], [1788775136000, 1185], [1788775137000, 1592], [1788775138000, 1607], [1788775139000, 2416], [1788775140000, 1436], [1788775141000, 1290], [1788775142000, 1509], [1788775143000, 1318], [1788775144000, 1441], [1788775145000, 1431], [1788775146000, 1649], [1788775147000, 1272], [1788775148000, 1130], [1788775149000, 1372], [1788775150000, 2013], [1788775151000, 1695], [1788775152000, 1938], [1788775153000, 969], [1788775154000, 1093], [1788775155000, 1271], [1788775156000, 1003], [1788775157000, 1339], [1788775158000, 1595], [1788775159000, 1588], [1788775160000, 1110], [1788775161000, 1701], [1788775162000, 1409], [1788775163000, 1880], [1788775164000, 1732], [1788775165000, 1139], [1788775166000, 1377], [1788775167000, 1180], [1788775168000, 3031], [1788775169000, 931], [1788775170000, 724], [1788775171000, 1675], [1788775172000, 1280], [1788775173000, 347], [1788775174000, 1419], [1788775175000, 1100], [1788775176000, 762], [1788775177000, 1086], [1788775178000, 1030], [1788775179000, 985], [1788775180000, 1404], [1788775181000, 1153], [1788775182000, 767], [1788775183000, 2311], [1788775184000, 1406], [1788775185000, 893], [1788775186000, 1512], [1788775187000, 849], [1788775188000, 865], [1788775189000, 1851], [1788775190000, 994], [1788775191000, 1408], [1788775192000, 1409], [1788775193000, 1365], [1788775194000, 1058], [1788775195000, 1505], [1788775196000, 1361], [1788775197000, 1039], [1788775198000, 1440], [1788775199000, 1651], [1788775200000, 1195], [1788775201000, 1826], [1788775202000, 1252], [1788775203000, 1422], [1788775204000, 1122], [1788775205000, 4570], [1788775206000, 837], [1788775207000, 1308], [1788775208000, 1138], [1788775209000, 992], [1788775210000, 1497], [1788775211000, 962], [1788775212000, 751], [1788775213000, 2030], [1788775214000, 1528], [1788775215000, 992], [1788775216000, 1283], [1788775217000, 884], [1788775218000, 1089], [1788775219000, 1806], [1788775220000, 826], [1788775221000, 876], [1788775222000, 1410], [1788775223000, 1083], [1788775224000, 1105], [1788775225000, 1318], [1788775226000, 1435], [1788775227000, 1611], [1788775228000, 1165], [1788775229000, 1048], [1788775230000, 910], [1788775231000, 852], [1788775232000, 937], [1788775233000, 1958], [1788775234000, 1168], [1788775235000, 1190], [1788775236000, 1049], [1788775237000, 1347], [1788775238000, 1029], [1788775239000, 811], [1788775240000, 943], [1788775241000, 1566], [1788775242000, 1319], [1788775243000, 980], [1788775244000, 1072], [1788775245000, 810], [1788775246000, 1339], [1788775247000, 3247], [1788775248000, 654], [1788775249000, 329], [1788775250000, 373], [1788775251000, 187], [1788775252000, 348], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 4
+},
+         {
+pointInterval: 1000,
+name: '95%',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 5478], [1788775040000, 6620], [1788775041000, 6107], [1788775042000, 5638], [1788775043000, 9772], [1788775044000, 3170], [1788775045000, 2593], [1788775046000, 2488], [1788775047000, 2463], [1788775048000, 5670], [1788775049000, 8830], [1788775050000, 5229], [1788775051000, 2688], [1788775052000, 5188], [1788775053000, 4902], [1788775054000, 8323], [1788775055000, 8240], [1788775056000, 6577], [1788775057000, 6739], [1788775058000, 7190], [1788775059000, 8887], [1788775060000, 7377], [1788775061000, 6450], [1788775062000, 8619], [1788775063000, 4882], [1788775064000, 7540], [1788775065000, 7684], [1788775066000, 8571], [1788775067000, 10045], [1788775068000, 6602], [1788775069000, 7313], [1788775070000, 7043], [1788775071000, 25456], [1788775072000, 29923], [1788775073000, 2227], [1788775074000, 3124], [1788775075000, 1648], [1788775076000, 1872], [1788775077000, 2069], [1788775078000, 1182], [1788775079000, 1467], [1788775080000, 884], [1788775081000, 2053], [1788775082000, 1434], [1788775083000, 1340], [1788775084000, 1586], [1788775085000, 1743], [1788775086000, 3025], [1788775087000, 1593], [1788775088000, 1225], [1788775089000, 3615], [1788775090000, 1323], [1788775091000, 999], [1788775092000, 4295], [1788775093000, 1039], [1788775094000, 1569], [1788775095000, 1587], [1788775096000, 2070], [1788775097000, 1213], [1788775098000, 2454], [1788775099000, 2018], [1788775100000, 1276], [1788775101000, 997], [1788775102000, 2324], [1788775103000, 1759], [1788775104000, 3562], [1788775105000, 1780], [1788775106000, 1300], [1788775107000, 2172], [1788775108000, 1577], [1788775109000, 1036], [1788775110000, 1780], [1788775111000, 1516], [1788775112000, 1140], [1788775113000, 1482], [1788775114000, 1644], [1788775115000, 2057], [1788775116000, 1610], [1788775117000, 1421], [1788775118000, 1735], [1788775119000, 2387], [1788775120000, 2827], [1788775121000, 1863], [1788775122000, 1811], [1788775123000, 1265], [1788775124000, 2620], [1788775125000, 3972], [1788775126000, 1044], [1788775127000, 842], [1788775128000, 3336], [1788775129000, 1784], [1788775130000, 2108], [1788775131000, 1789], [1788775132000, 3780], [1788775133000, 1031], [1788775134000, 1273], [1788775135000, 1400], [1788775136000, 1244], [1788775137000, 1970], [1788775138000, 1654], [1788775139000, 2416], [1788775140000, 3984], [1788775141000, 1469], [1788775142000, 1509], [1788775143000, 1393], [1788775144000, 1441], [1788775145000, 1596], [1788775146000, 1649], [1788775147000, 3963], [1788775148000, 1130], [1788775149000, 4320], [1788775150000, 2109], [1788775151000, 1695], [1788775152000, 1938], [1788775153000, 1387], [1788775154000, 1254], [1788775155000, 3944], [1788775156000, 1100], [1788775157000, 1587], [1788775158000, 1948], [1788775159000, 2191], [1788775160000, 1110], [1788775161000, 1701], [1788775162000, 4492], [1788775163000, 2474], [1788775164000, 1732], [1788775165000, 1139], [1788775166000, 1912], [1788775167000, 1401], [1788775168000, 3031], [1788775169000, 1123], [1788775170000, 1919], [1788775171000, 1692], [1788775172000, 1330], [1788775173000, 982], [1788775174000, 1549], [1788775175000, 3693], [1788775176000, 911], [1788775177000, 1637], [1788775178000, 1567], [1788775179000, 1335], [1788775180000, 2460], [1788775181000, 1367], [1788775182000, 1167], [1788775183000, 3652], [1788775184000, 1406], [1788775185000, 893], [1788775186000, 3658], [1788775187000, 954], [1788775188000, 865], [1788775189000, 4346], [1788775190000, 1372], [1788775191000, 1408], [1788775192000, 1476], [1788775193000, 1656], [1788775194000, 1982], [1788775195000, 1659], [1788775196000, 1361], [1788775197000, 2558], [1788775198000, 1459], [1788775199000, 1651], [1788775200000, 1651], [1788775201000, 1826], [1788775202000, 1325], [1788775203000, 1956], [1788775204000, 1252], [1788775205000, 4570], [1788775206000, 1961], [1788775207000, 1357], [1788775208000, 1138], [1788775209000, 1851], [1788775210000, 3812], [1788775211000, 962], [1788775212000, 1327], [1788775213000, 4280], [1788775214000, 1528], [1788775215000, 992], [1788775216000, 3237], [1788775217000, 963], [1788775218000, 1089], [1788775219000, 3525], [1788775220000, 1079], [1788775221000, 1159], [1788775222000, 1592], [1788775223000, 1476], [1788775224000, 1105], [1788775225000, 1353], [1788775226000, 1496], [1788775227000, 1611], [1788775228000, 1794], [1788775229000, 3905], [1788775230000, 922], [1788775231000, 1047], [1788775232000, 1274], [1788775233000, 2216], [1788775234000, 1474], [1788775235000, 1221], [1788775236000, 1544], [1788775237000, 1347], [1788775238000, 3904], [1788775239000, 849], [1788775240000, 1015], [1788775241000, 2020], [1788775242000, 3984], [1788775243000, 1028], [1788775244000, 1072], [1788775245000, 819], [1788775246000, 1351], [1788775247000, 3247], [1788775248000, 654], [1788775249000, 329], [1788775250000, 373], [1788775251000, 187], [1788775252000, 348], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 3
+},
+         {
+pointInterval: 1000,
+name: '99%',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 5478], [1788775040000, 6620], [1788775041000, 6107], [1788775042000, 5638], [1788775043000, 9772], [1788775044000, 3170], [1788775045000, 2593], [1788775046000, 2488], [1788775047000, 2463], [1788775048000, 5670], [1788775049000, 8830], [1788775050000, 5229], [1788775051000, 2688], [1788775052000, 5188], [1788775053000, 4902], [1788775054000, 8323], [1788775055000, 8240], [1788775056000, 6577], [1788775057000, 6739], [1788775058000, 7190], [1788775059000, 8887], [1788775060000, 7377], [1788775061000, 6450], [1788775062000, 8619], [1788775063000, 4882], [1788775064000, 7540], [1788775065000, 7684], [1788775066000, 8571], [1788775067000, 10045], [1788775068000, 6602], [1788775069000, 7313], [1788775070000, 7043], [1788775071000, 25456], [1788775072000, 29923], [1788775073000, 2227], [1788775074000, 3124], [1788775075000, 1648], [1788775076000, 1872], [1788775077000, 2123], [1788775078000, 1291], [1788775079000, 1551], [1788775080000, 1690], [1788775081000, 4165], [1788775082000, 1434], [1788775083000, 1340], [1788775084000, 1586], [1788775085000, 1743], [1788775086000, 3025], [1788775087000, 1593], [1788775088000, 1225], [1788775089000, 3615], [1788775090000, 1323], [1788775091000, 999], [1788775092000, 4295], [1788775093000, 1039], [1788775094000, 1656], [1788775095000, 1587], [1788775096000, 2070], [1788775097000, 2479], [1788775098000, 2454], [1788775099000, 2018], [1788775100000, 1276], [1788775101000, 997], [1788775102000, 2324], [1788775103000, 1759], [1788775104000, 3562], [1788775105000, 1780], [1788775106000, 1300], [1788775107000, 2172], [1788775108000, 1577], [1788775109000, 1036], [1788775110000, 1780], [1788775111000, 1516], [1788775112000, 1140], [1788775113000, 1482], [1788775114000, 1644], [1788775115000, 2057], [1788775116000, 1610], [1788775117000, 1421], [1788775118000, 1735], [1788775119000, 2387], [1788775120000, 2827], [1788775121000, 1863], [1788775122000, 1811], [1788775123000, 1265], [1788775124000, 2620], [1788775125000, 3972], [1788775126000, 1044], [1788775127000, 842], [1788775128000, 3336], [1788775129000, 1784], [1788775130000, 2108], [1788775131000, 1789], [1788775132000, 3780], [1788775133000, 1031], [1788775134000, 1273], [1788775135000, 1400], [1788775136000, 1244], [1788775137000, 1970], [1788775138000, 1654], [1788775139000, 2416], [1788775140000, 3984], [1788775141000, 1469], [1788775142000, 1509], [1788775143000, 1393], [1788775144000, 1441], [1788775145000, 1596], [1788775146000, 1649], [1788775147000, 3963], [1788775148000, 1130], [1788775149000, 4320], [1788775150000, 2109], [1788775151000, 1695], [1788775152000, 1938], [1788775153000, 1387], [1788775154000, 1254], [1788775155000, 3944], [1788775156000, 1100], [1788775157000, 1587], [1788775158000, 1948], [1788775159000, 2191], [1788775160000, 1110], [1788775161000, 1701], [1788775162000, 4492], [1788775163000, 2474], [1788775164000, 1732], [1788775165000, 1139], [1788775166000, 1912], [1788775167000, 1401], [1788775168000, 3031], [1788775169000, 1123], [1788775170000, 1919], [1788775171000, 1692], [1788775172000, 1330], [1788775173000, 982], [1788775174000, 1549], [1788775175000, 3693], [1788775176000, 911], [1788775177000, 1637], [1788775178000, 1567], [1788775179000, 1335], [1788775180000, 2460], [1788775181000, 1367], [1788775182000, 1167], [1788775183000, 3652], [1788775184000, 1406], [1788775185000, 893], [1788775186000, 3658], [1788775187000, 954], [1788775188000, 865], [1788775189000, 4346], [1788775190000, 1372], [1788775191000, 1408], [1788775192000, 1476], [1788775193000, 1656], [1788775194000, 1982], [1788775195000, 1659], [1788775196000, 1361], [1788775197000, 2558], [1788775198000, 1459], [1788775199000, 1651], [1788775200000, 1651], [1788775201000, 1826], [1788775202000, 1325], [1788775203000, 1956], [1788775204000, 1252], [1788775205000, 4570], [1788775206000, 1961], [1788775207000, 1357], [1788775208000, 1138], [1788775209000, 1851], [1788775210000, 3812], [1788775211000, 962], [1788775212000, 1327], [1788775213000, 4280], [1788775214000, 1528], [1788775215000, 992], [1788775216000, 3237], [1788775217000, 963], [1788775218000, 1089], [1788775219000, 3525], [1788775220000, 1079], [1788775221000, 1159], [1788775222000, 1592], [1788775223000, 1476], [1788775224000, 1105], [1788775225000, 1353], [1788775226000, 1496], [1788775227000, 1611], [1788775228000, 1794], [1788775229000, 3905], [1788775230000, 922], [1788775231000, 1047], [1788775232000, 1274], [1788775233000, 2216], [1788775234000, 1474], [1788775235000, 1221], [1788775236000, 1544], [1788775237000, 1347], [1788775238000, 3904], [1788775239000, 849], [1788775240000, 1015], [1788775241000, 2020], [1788775242000, 3984], [1788775243000, 1028], [1788775244000, 1072], [1788775245000, 819], [1788775246000, 1351], [1788775247000, 3247], [1788775248000, 654], [1788775249000, 329], [1788775250000, 373], [1788775251000, 187], [1788775252000, 348], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 2
+},
+         {
+pointInterval: 1000,
+name: 'max',
+data: [[1788775036000, 1643], [1788775037000, 2125], [1788775038000, 1825], [1788775039000, 5478], [1788775040000, 6620], [1788775041000, 6107], [1788775042000, 5638], [1788775043000, 9772], [1788775044000, 3170], [1788775045000, 2593], [1788775046000, 2488], [1788775047000, 2463], [1788775048000, 5670], [1788775049000, 8830], [1788775050000, 5229], [1788775051000, 2688], [1788775052000, 5188], [1788775053000, 4902], [1788775054000, 8323], [1788775055000, 8240], [1788775056000, 6577], [1788775057000, 6739], [1788775058000, 7190], [1788775059000, 8887], [1788775060000, 7377], [1788775061000, 6450], [1788775062000, 8619], [1788775063000, 4882], [1788775064000, 7540], [1788775065000, 7684], [1788775066000, 8571], [1788775067000, 10045], [1788775068000, 6602], [1788775069000, 7313], [1788775070000, 7043], [1788775071000, 25456], [1788775072000, 29923], [1788775073000, 2227], [1788775074000, 3124], [1788775075000, 1648], [1788775076000, 1872], [1788775077000, 2123], [1788775078000, 1291], [1788775079000, 1551], [1788775080000, 1690], [1788775081000, 4165], [1788775082000, 1434], [1788775083000, 1340], [1788775084000, 1586], [1788775085000, 1743], [1788775086000, 3025], [1788775087000, 1593], [1788775088000, 1225], [1788775089000, 3615], [1788775090000, 1323], [1788775091000, 999], [1788775092000, 4295], [1788775093000, 1039], [1788775094000, 1656], [1788775095000, 1587], [1788775096000, 2070], [1788775097000, 2479], [1788775098000, 2454], [1788775099000, 2018], [1788775100000, 1276], [1788775101000, 997], [1788775102000, 2324], [1788775103000, 1759], [1788775104000, 3562], [1788775105000, 1780], [1788775106000, 1300], [1788775107000, 2172], [1788775108000, 1577], [1788775109000, 1036], [1788775110000, 1780], [1788775111000, 1516], [1788775112000, 1140], [1788775113000, 1482], [1788775114000, 1644], [1788775115000, 2057], [1788775116000, 1610], [1788775117000, 1421], [1788775118000, 1735], [1788775119000, 2387], [1788775120000, 2827], [1788775121000, 1863], [1788775122000, 1811], [1788775123000, 1265], [1788775124000, 2620], [1788775125000, 3972], [1788775126000, 1044], [1788775127000, 842], [1788775128000, 3336], [1788775129000, 1784], [1788775130000, 2108], [1788775131000, 1789], [1788775132000, 3780], [1788775133000, 1031], [1788775134000, 1273], [1788775135000, 1400], [1788775136000, 1244], [1788775137000, 1970], [1788775138000, 1654], [1788775139000, 2416], [1788775140000, 3984], [1788775141000, 1469], [1788775142000, 1509], [1788775143000, 1393], [1788775144000, 1441], [1788775145000, 1596], [1788775146000, 1649], [1788775147000, 3963], [1788775148000, 1130], [1788775149000, 4320], [1788775150000, 2109], [1788775151000, 1695], [1788775152000, 1938], [1788775153000, 1387], [1788775154000, 1254], [1788775155000, 3944], [1788775156000, 1100], [1788775157000, 1587], [1788775158000, 1948], [1788775159000, 2191], [1788775160000, 1110], [1788775161000, 1701], [1788775162000, 4492], [1788775163000, 2474], [1788775164000, 1732], [1788775165000, 1139], [1788775166000, 1912], [1788775167000, 1401], [1788775168000, 3031], [1788775169000, 1123], [1788775170000, 1919], [1788775171000, 1692], [1788775172000, 1330], [1788775173000, 982], [1788775174000, 1549], [1788775175000, 3693], [1788775176000, 911], [1788775177000, 1637], [1788775178000, 1567], [1788775179000, 1335], [1788775180000, 2460], [1788775181000, 1367], [1788775182000, 1167], [1788775183000, 3652], [1788775184000, 1406], [1788775185000, 893], [1788775186000, 3658], [1788775187000, 954], [1788775188000, 865], [1788775189000, 4346], [1788775190000, 1372], [1788775191000, 1408], [1788775192000, 1476], [1788775193000, 1656], [1788775194000, 1982], [1788775195000, 1659], [1788775196000, 1361], [1788775197000, 2558], [1788775198000, 1459], [1788775199000, 1651], [1788775200000, 1651], [1788775201000, 1826], [1788775202000, 1325], [1788775203000, 1956], [1788775204000, 1252], [1788775205000, 4570], [1788775206000, 1961], [1788775207000, 1357], [1788775208000, 1138], [1788775209000, 1851], [1788775210000, 3812], [1788775211000, 962], [1788775212000, 1327], [1788775213000, 4280], [1788775214000, 1528], [1788775215000, 992], [1788775216000, 3237], [1788775217000, 963], [1788775218000, 1089], [1788775219000, 3525], [1788775220000, 1079], [1788775221000, 1159], [1788775222000, 1592], [1788775223000, 1476], [1788775224000, 1105], [1788775225000, 1353], [1788775226000, 1496], [1788775227000, 1611], [1788775228000, 1794], [1788775229000, 3905], [1788775230000, 922], [1788775231000, 1047], [1788775232000, 1274], [1788775233000, 2216], [1788775234000, 1474], [1788775235000, 1221], [1788775236000, 1544], [1788775237000, 1347], [1788775238000, 3904], [1788775239000, 849], [1788775240000, 1015], [1788775241000, 2020], [1788775242000, 3984], [1788775243000, 1028], [1788775244000, 1072], [1788775245000, 819], [1788775246000, 1351], [1788775247000, 3247], [1788775248000, 654], [1788775249000, 329], [1788775250000, 373], [1788775251000, 187], [1788775252000, 348], [1788775253000, 159], [1788775254000, 184]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 1
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'RequestsContainerId',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of requests per second</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+         },
+         select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Number of requests' },
+      opposite: false,
+      reversedStacks: false
+    }
+  ],
+  series: [
+    {
+color: '#5E7BE2',
+name: 'All',
+data: [[1788775036000, 2], [1788775037000, 2], [1788775038000, 1], [1788775039000, 4], [1788775040000, 4], [1788775041000, 2], [1788775042000, 4], [1788775043000, 6], [1788775044000, 2], [1788775045000, 4], [1788775046000, 3], [1788775047000, 5], [1788775048000, 13], [1788775049000, 12], [1788775050000, 5], [1788775051000, 3], [1788775052000, 8], [1788775053000, 10], [1788775054000, 7], [1788775055000, 15], [1788775056000, 6], [1788775057000, 11], [1788775058000, 3], [1788775059000, 8], [1788775060000, 9], [1788775061000, 6], [1788775062000, 10], [1788775063000, 2], [1788775064000, 10], [1788775065000, 12], [1788775066000, 7], [1788775067000, 9], [1788775068000, 7], [1788775069000, 10], [1788775070000, 8], [1788775071000, 6], [1788775072000, 11], [1788775073000, 2], [1788775074000, 12], [1788775075000, 7], [1788775076000, 19], [1788775077000, 22], [1788775078000, 26], [1788775079000, 27], [1788775080000, 21], [1788775081000, 22], [1788775082000, 20], [1788775083000, 18], [1788775084000, 19], [1788775085000, 9], [1788775086000, 9], [1788775087000, 14], [1788775088000, 14], [1788775089000, 11], [1788775090000, 11], [1788775091000, 11], [1788775092000, 12], [1788775093000, 15], [1788775094000, 21], [1788775095000, 17], [1788775096000, 15], [1788775097000, 21], [1788775098000, 14], [1788775099000, 11], [1788775100000, 16], [1788775101000, 10], [1788775102000, 20], [1788775103000, 15], [1788775104000, 16], [1788775105000, 10], [1788775106000, 14], [1788775107000, 13], [1788775108000, 13], [1788775109000, 11], [1788775110000, 11], [1788775111000, 12], [1788775112000, 12], [1788775113000, 13], [1788775114000, 14], [1788775115000, 11], [1788775116000, 9], [1788775117000, 12], [1788775118000, 14], [1788775119000, 10], [1788775120000, 9], [1788775121000, 14], [1788775122000, 8], [1788775123000, 7], [1788775124000, 16], [1788775125000, 12], [1788775126000, 11], [1788775127000, 14], [1788775128000, 8], [1788775129000, 11], [1788775130000, 15], [1788775131000, 10], [1788775132000, 12], [1788775133000, 13], [1788775134000, 11], [1788775135000, 12], [1788775136000, 13], [1788775137000, 11], [1788775138000, 13], [1788775139000, 10], [1788775140000, 12], [1788775141000, 12], [1788775142000, 9], [1788775143000, 12], [1788775144000, 10], [1788775145000, 12], [1788775146000, 10], [1788775147000, 18], [1788775148000, 10], [1788775149000, 12], [1788775150000, 12], [1788775151000, 9], [1788775152000, 8], [1788775153000, 12], [1788775154000, 14], [1788775155000, 11], [1788775156000, 14], [1788775157000, 12], [1788775158000, 13], [1788775159000, 13], [1788775160000, 9], [1788775161000, 9], [1788775162000, 16], [1788775163000, 12], [1788775164000, 9], [1788775165000, 4], [1788775166000, 16], [1788775167000, 13], [1788775168000, 9], [1788775169000, 17], [1788775170000, 11], [1788775171000, 11], [1788775172000, 13], [1788775173000, 13], [1788775174000, 12], [1788775175000, 11], [1788775176000, 12], [1788775177000, 13], [1788775178000, 12], [1788775179000, 12], [1788775180000, 13], [1788775181000, 12], [1788775182000, 12], [1788775183000, 12], [1788775184000, 10], [1788775185000, 3], [1788775186000, 17], [1788775187000, 12], [1788775188000, 8], [1788775189000, 14], [1788775190000, 11], [1788775191000, 7], [1788775192000, 17], [1788775193000, 13], [1788775194000, 11], [1788775195000, 14], [1788775196000, 9], [1788775197000, 12], [1788775198000, 16], [1788775199000, 9], [1788775200000, 13], [1788775201000, 8], [1788775202000, 13], [1788775203000, 12], [1788775204000, 12], [1788775205000, 10], [1788775206000, 13], [1788775207000, 15], [1788775208000, 5], [1788775209000, 14], [1788775210000, 15], [1788775211000, 9], [1788775212000, 12], [1788775213000, 15], [1788775214000, 9], [1788775215000, 9], [1788775216000, 15], [1788775217000, 13], [1788775218000, 9], [1788775219000, 14], [1788775220000, 11], [1788775221000, 11], [1788775222000, 12], [1788775223000, 12], [1788775224000, 12], [1788775225000, 12], [1788775226000, 14], [1788775227000, 9], [1788775228000, 11], [1788775229000, 11], [1788775230000, 14], [1788775231000, 11], [1788775232000, 11], [1788775233000, 12], [1788775234000, 12], [1788775235000, 13], [1788775236000, 13], [1788775237000, 9], [1788775238000, 11], [1788775239000, 12], [1788775240000, 13], [1788775241000, 11], [1788775242000, 11], [1788775243000, 13], [1788775244000, 10], [1788775245000, 12], [1788775246000, 12], [1788775247000, 8], [1788775248000, 10], [1788775249000, 6], [1788775250000, 8], [1788775251000, 8], [1788775252000, 3], [1788775253000, 1], [1788775254000, 2]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+,type: 'area'
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'ResponsesContainerId',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of responses per second</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+         },
+         select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Number of responses' },
+      opposite: false,
+      reversedStacks: false
+    }
+  ],
+  series: [
+    {
+color: '#5E7BE2',
+name: 'All',
+data: [[1788775036000, 0], [1788775037000, 0], [1788775038000, 2], [1788775039000, 2], [1788775040000, 1], [1788775041000, 2], [1788775042000, 4], [1788775043000, 2], [1788775044000, 1], [1788775045000, 1], [1788775046000, 4], [1788775047000, 10], [1788775048000, 11], [1788775049000, 4], [1788775050000, 1], [1788775051000, 4], [1788775052000, 11], [1788775053000, 5], [1788775054000, 8], [1788775055000, 11], [1788775056000, 11], [1788775057000, 1], [1788775058000, 6], [1788775059000, 6], [1788775060000, 9], [1788775061000, 10], [1788775062000, 0], [1788775063000, 6], [1788775064000, 11], [1788775065000, 8], [1788775066000, 7], [1788775067000, 6], [1788775068000, 7], [1788775069000, 10], [1788775070000, 6], [1788775071000, 9], [1788775072000, 0], [1788775073000, 12], [1788775074000, 9], [1788775075000, 16], [1788775076000, 22], [1788775077000, 23], [1788775078000, 33], [1788775079000, 27], [1788775080000, 22], [1788775081000, 21], [1788775082000, 20], [1788775083000, 25], [1788775084000, 13], [1788775085000, 10], [1788775086000, 12], [1788775087000, 14], [1788775088000, 12], [1788775089000, 12], [1788775090000, 11], [1788775091000, 11], [1788775092000, 13], [1788775093000, 23], [1788775094000, 19], [1788775095000, 12], [1788775096000, 22], [1788775097000, 21], [1788775098000, 12], [1788775099000, 14], [1788775100000, 11], [1788775101000, 19], [1788775102000, 18], [1788775103000, 14], [1788775104000, 14], [1788775105000, 14], [1788775106000, 14], [1788775107000, 14], [1788775108000, 11], [1788775109000, 13], [1788775110000, 8], [1788775111000, 12], [1788775112000, 15], [1788775113000, 14], [1788775114000, 11], [1788775115000, 10], [1788775116000, 10], [1788775117000, 14], [1788775118000, 13], [1788775119000, 7], [1788775120000, 12], [1788775121000, 12], [1788775122000, 4], [1788775123000, 15], [1788775124000, 13], [1788775125000, 13], [1788775126000, 9], [1788775127000, 13], [1788775128000, 10], [1788775129000, 12], [1788775130000, 11], [1788775131000, 12], [1788775132000, 13], [1788775133000, 14], [1788775134000, 10], [1788775135000, 13], [1788775136000, 12], [1788775137000, 14], [1788775138000, 6], [1788775139000, 13], [1788775140000, 14], [1788775141000, 12], [1788775142000, 9], [1788775143000, 11], [1788775144000, 9], [1788775145000, 11], [1788775146000, 15], [1788775147000, 13], [1788775148000, 13], [1788775149000, 12], [1788775150000, 10], [1788775151000, 7], [1788775152000, 11], [1788775153000, 12], [1788775154000, 15], [1788775155000, 11], [1788775156000, 12], [1788775157000, 12], [1788775158000, 16], [1788775159000, 9], [1788775160000, 10], [1788775161000, 12], [1788775162000, 16], [1788775163000, 8], [1788775164000, 3], [1788775165000, 14], [1788775166000, 15], [1788775167000, 10], [1788775168000, 12], [1788775169000, 15], [1788775170000, 10], [1788775171000, 13], [1788775172000, 13], [1788775173000, 14], [1788775174000, 11], [1788775175000, 11], [1788775176000, 13], [1788775177000, 13], [1788775178000, 12], [1788775179000, 13], [1788775180000, 11], [1788775181000, 12], [1788775182000, 14], [1788775183000, 10], [1788775184000, 3], [1788775185000, 15], [1788775186000, 12], [1788775187000, 11], [1788775188000, 9], [1788775189000, 14], [1788775190000, 7], [1788775191000, 14], [1788775192000, 13], [1788775193000, 15], [1788775194000, 13], [1788775195000, 9], [1788775196000, 10], [1788775197000, 16], [1788775198000, 13], [1788775199000, 11], [1788775200000, 7], [1788775201000, 13], [1788775202000, 13], [1788775203000, 11], [1788775204000, 10], [1788775205000, 13], [1788775206000, 15], [1788775207000, 6], [1788775208000, 12], [1788775209000, 17], [1788775210000, 9], [1788775211000, 10], [1788775212000, 15], [1788775213000, 13], [1788775214000, 7], [1788775215000, 15], [1788775216000, 11], [1788775217000, 13], [1788775218000, 11], [1788775219000, 12], [1788775220000, 9], [1788775221000, 15], [1788775222000, 11], [1788775223000, 12], [1788775224000, 12], [1788775225000, 12], [1788775226000, 11], [1788775227000, 10], [1788775228000, 13], [1788775229000, 12], [1788775230000, 12], [1788775231000, 10], [1788775232000, 13], [1788775233000, 13], [1788775234000, 10], [1788775235000, 14], [1788775236000, 11], [1788775237000, 11], [1788775238000, 10], [1788775239000, 14], [1788775240000, 11], [1788775241000, 11], [1788775242000, 12], [1788775243000, 13], [1788775244000, 8], [1788775245000, 16], [1788775246000, 11], [1788775247000, 10], [1788775248000, 8], [1788775249000, 8], [1788775250000, 11], [1788775251000, 7], [1788775252000, 3], [1788775253000, 1], [1788775254000, 3]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+
+},
+{
+color: '#68b65c',
+name: 'OK',
+data: [[1788775036000, 0], [1788775037000, 0], [1788775038000, 2], [1788775039000, 2], [1788775040000, 1], [1788775041000, 2], [1788775042000, 4], [1788775043000, 2], [1788775044000, 1], [1788775045000, 1], [1788775046000, 4], [1788775047000, 10], [1788775048000, 11], [1788775049000, 4], [1788775050000, 1], [1788775051000, 4], [1788775052000, 11], [1788775053000, 5], [1788775054000, 8], [1788775055000, 11], [1788775056000, 11], [1788775057000, 1], [1788775058000, 6], [1788775059000, 6], [1788775060000, 9], [1788775061000, 10], [1788775062000, 0], [1788775063000, 6], [1788775064000, 11], [1788775065000, 8], [1788775066000, 7], [1788775067000, 6], [1788775068000, 7], [1788775069000, 10], [1788775070000, 6], [1788775071000, 9], [1788775072000, 0], [1788775073000, 12], [1788775074000, 9], [1788775075000, 16], [1788775076000, 22], [1788775077000, 23], [1788775078000, 33], [1788775079000, 27], [1788775080000, 22], [1788775081000, 21], [1788775082000, 20], [1788775083000, 25], [1788775084000, 13], [1788775085000, 10], [1788775086000, 12], [1788775087000, 14], [1788775088000, 12], [1788775089000, 12], [1788775090000, 11], [1788775091000, 11], [1788775092000, 13], [1788775093000, 15], [1788775094000, 19], [1788775095000, 12], [1788775096000, 22], [1788775097000, 21], [1788775098000, 12], [1788775099000, 14], [1788775100000, 11], [1788775101000, 19], [1788775102000, 18], [1788775103000, 14], [1788775104000, 14], [1788775105000, 14], [1788775106000, 14], [1788775107000, 14], [1788775108000, 11], [1788775109000, 13], [1788775110000, 8], [1788775111000, 12], [1788775112000, 15], [1788775113000, 14], [1788775114000, 11], [1788775115000, 10], [1788775116000, 10], [1788775117000, 14], [1788775118000, 13], [1788775119000, 7], [1788775120000, 12], [1788775121000, 12], [1788775122000, 4], [1788775123000, 15], [1788775124000, 13], [1788775125000, 13], [1788775126000, 9], [1788775127000, 13], [1788775128000, 10], [1788775129000, 12], [1788775130000, 11], [1788775131000, 12], [1788775132000, 13], [1788775133000, 14], [1788775134000, 10], [1788775135000, 13], [1788775136000, 12], [1788775137000, 14], [1788775138000, 6], [1788775139000, 13], [1788775140000, 14], [1788775141000, 12], [1788775142000, 9], [1788775143000, 11], [1788775144000, 9], [1788775145000, 11], [1788775146000, 15], [1788775147000, 13], [1788775148000, 13], [1788775149000, 12], [1788775150000, 10], [1788775151000, 7], [1788775152000, 11], [1788775153000, 12], [1788775154000, 15], [1788775155000, 11], [1788775156000, 12], [1788775157000, 12], [1788775158000, 16], [1788775159000, 9], [1788775160000, 10], [1788775161000, 12], [1788775162000, 16], [1788775163000, 8], [1788775164000, 3], [1788775165000, 14], [1788775166000, 15], [1788775167000, 10], [1788775168000, 12], [1788775169000, 15], [1788775170000, 10], [1788775171000, 13], [1788775172000, 13], [1788775173000, 14], [1788775174000, 11], [1788775175000, 11], [1788775176000, 13], [1788775177000, 13], [1788775178000, 12], [1788775179000, 13], [1788775180000, 11], [1788775181000, 12], [1788775182000, 14], [1788775183000, 10], [1788775184000, 3], [1788775185000, 15], [1788775186000, 12], [1788775187000, 11], [1788775188000, 9], [1788775189000, 14], [1788775190000, 7], [1788775191000, 14], [1788775192000, 13], [1788775193000, 15], [1788775194000, 13], [1788775195000, 9], [1788775196000, 10], [1788775197000, 16], [1788775198000, 13], [1788775199000, 11], [1788775200000, 7], [1788775201000, 13], [1788775202000, 13], [1788775203000, 11], [1788775204000, 10], [1788775205000, 13], [1788775206000, 15], [1788775207000, 6], [1788775208000, 12], [1788775209000, 17], [1788775210000, 9], [1788775211000, 10], [1788775212000, 15], [1788775213000, 13], [1788775214000, 7], [1788775215000, 15], [1788775216000, 11], [1788775217000, 13], [1788775218000, 11], [1788775219000, 12], [1788775220000, 9], [1788775221000, 15], [1788775222000, 11], [1788775223000, 12], [1788775224000, 12], [1788775225000, 12], [1788775226000, 11], [1788775227000, 10], [1788775228000, 13], [1788775229000, 12], [1788775230000, 12], [1788775231000, 10], [1788775232000, 13], [1788775233000, 13], [1788775234000, 10], [1788775235000, 14], [1788775236000, 11], [1788775237000, 11], [1788775238000, 10], [1788775239000, 14], [1788775240000, 11], [1788775241000, 11], [1788775242000, 12], [1788775243000, 13], [1788775244000, 8], [1788775245000, 16], [1788775246000, 11], [1788775247000, 10], [1788775248000, 8], [1788775249000, 8], [1788775250000, 11], [1788775251000, 7], [1788775252000, 3], [1788775253000, 1], [1788775254000, 3]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+,type: 'area'
+},
+{
+color: '#f15b4f',
+name: 'KO',
+data: [[1788775036000, 0], [1788775037000, 0], [1788775038000, 0], [1788775039000, 0], [1788775040000, 0], [1788775041000, 0], [1788775042000, 0], [1788775043000, 0], [1788775044000, 0], [1788775045000, 0], [1788775046000, 0], [1788775047000, 0], [1788775048000, 0], [1788775049000, 0], [1788775050000, 0], [1788775051000, 0], [1788775052000, 0], [1788775053000, 0], [1788775054000, 0], [1788775055000, 0], [1788775056000, 0], [1788775057000, 0], [1788775058000, 0], [1788775059000, 0], [1788775060000, 0], [1788775061000, 0], [1788775062000, 0], [1788775063000, 0], [1788775064000, 0], [1788775065000, 0], [1788775066000, 0], [1788775067000, 0], [1788775068000, 0], [1788775069000, 0], [1788775070000, 0], [1788775071000, 0], [1788775072000, 0], [1788775073000, 0], [1788775074000, 0], [1788775075000, 0], [1788775076000, 0], [1788775077000, 0], [1788775078000, 0], [1788775079000, 0], [1788775080000, 0], [1788775081000, 0], [1788775082000, 0], [1788775083000, 0], [1788775084000, 0], [1788775085000, 0], [1788775086000, 0], [1788775087000, 0], [1788775088000, 0], [1788775089000, 0], [1788775090000, 0], [1788775091000, 0], [1788775092000, 0], [1788775093000, 8], [1788775094000, 0], [1788775095000, 0], [1788775096000, 0], [1788775097000, 0], [1788775098000, 0], [1788775099000, 0], [1788775100000, 0], [1788775101000, 0], [1788775102000, 0], [1788775103000, 0], [1788775104000, 0], [1788775105000, 0], [1788775106000, 0], [1788775107000, 0], [1788775108000, 0], [1788775109000, 0], [1788775110000, 0], [1788775111000, 0], [1788775112000, 0], [1788775113000, 0], [1788775114000, 0], [1788775115000, 0], [1788775116000, 0], [1788775117000, 0], [1788775118000, 0], [1788775119000, 0], [1788775120000, 0], [1788775121000, 0], [1788775122000, 0], [1788775123000, 0], [1788775124000, 0], [1788775125000, 0], [1788775126000, 0], [1788775127000, 0], [1788775128000, 0], [1788775129000, 0], [1788775130000, 0], [1788775131000, 0], [1788775132000, 0], [1788775133000, 0], [1788775134000, 0], [1788775135000, 0], [1788775136000, 0], [1788775137000, 0], [1788775138000, 0], [1788775139000, 0], [1788775140000, 0], [1788775141000, 0], [1788775142000, 0], [1788775143000, 0], [1788775144000, 0], [1788775145000, 0], [1788775146000, 0], [1788775147000, 0], [1788775148000, 0], [1788775149000, 0], [1788775150000, 0], [1788775151000, 0], [1788775152000, 0], [1788775153000, 0], [1788775154000, 0], [1788775155000, 0], [1788775156000, 0], [1788775157000, 0], [1788775158000, 0], [1788775159000, 0], [1788775160000, 0], [1788775161000, 0], [1788775162000, 0], [1788775163000, 0], [1788775164000, 0], [1788775165000, 0], [1788775166000, 0], [1788775167000, 0], [1788775168000, 0], [1788775169000, 0], [1788775170000, 0], [1788775171000, 0], [1788775172000, 0], [1788775173000, 0], [1788775174000, 0], [1788775175000, 0], [1788775176000, 0], [1788775177000, 0], [1788775178000, 0], [1788775179000, 0], [1788775180000, 0], [1788775181000, 0], [1788775182000, 0], [1788775183000, 0], [1788775184000, 0], [1788775185000, 0], [1788775186000, 0], [1788775187000, 0], [1788775188000, 0], [1788775189000, 0], [1788775190000, 0], [1788775191000, 0], [1788775192000, 0], [1788775193000, 0], [1788775194000, 0], [1788775195000, 0], [1788775196000, 0], [1788775197000, 0], [1788775198000, 0], [1788775199000, 0], [1788775200000, 0], [1788775201000, 0], [1788775202000, 0], [1788775203000, 0], [1788775204000, 0], [1788775205000, 0], [1788775206000, 0], [1788775207000, 0], [1788775208000, 0], [1788775209000, 0], [1788775210000, 0], [1788775211000, 0], [1788775212000, 0], [1788775213000, 0], [1788775214000, 0], [1788775215000, 0], [1788775216000, 0], [1788775217000, 0], [1788775218000, 0], [1788775219000, 0], [1788775220000, 0], [1788775221000, 0], [1788775222000, 0], [1788775223000, 0], [1788775224000, 0], [1788775225000, 0], [1788775226000, 0], [1788775227000, 0], [1788775228000, 0], [1788775229000, 0], [1788775230000, 0], [1788775231000, 0], [1788775232000, 0], [1788775233000, 0], [1788775234000, 0], [1788775235000, 0], [1788775236000, 0], [1788775237000, 0], [1788775238000, 0], [1788775239000, 0], [1788775240000, 0], [1788775241000, 0], [1788775242000, 0], [1788775243000, 0], [1788775244000, 0], [1788775245000, 0], [1788775246000, 0], [1788775247000, 0], [1788775248000, 0], [1788775249000, 0], [1788775250000, 0], [1788775251000, 0], [1788775252000, 0], [1788775253000, 0], [1788775254000, 0]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+,type: 'area'
+},
+{
+type: 'pie',
+name: 'Distribution',
+data: [
+  {name: 'OK', y: 2442, color: '#68b65c'},
+  {name: 'KO', y: 8, color: '#f15b4f'}
+],
+center: [775, -40],
+size: 70,
+showInLegend: false,
+dataLabels: { enabled: false },
+dataGrouping: { enabled: false }
+}
+  ]
+});
+
+    });
+</script>
+</div>
+</body>
+</html>
