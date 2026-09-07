@@ -17,7 +17,7 @@ public class THLSchedulingConcurrencySimulation extends Simulation {
             "66252f12e0313ea0b127ef7a",
             "678e1da3a37a4d664121a1e7",
             "Africa/Cairo",
-            "badgewell.com",
+            "hazem.farag+77@badgewell.com",
             "HOST",
             "ONLINE");
     {

@@ -13,7 +13,7 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 public class THLInterviewLoadSimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
     ScenarioBuilder scn = perf02NormalLoad(admintoken1, "66252f12e0313ea0b127ef7a",
-            "6a89d0315d19d0f6c3182562", "2026-08-06", "2026-08-20");
+            "6a9e894d2dc45821fd7dc4da", "2026-08-06", "2026-09-05");
     {
         setUp(scn
                 .injectOpen(

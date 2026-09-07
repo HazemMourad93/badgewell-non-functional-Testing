@@ -128,7 +128,7 @@ public final class THLinterviewSceanrios {
             String toDate) {
         return exec(THLInterviewRequests.getInterviews(
                         token, organizationId, "", "", "",
-                        "", fromDate, toDate, 1, 20).check(readStatus()))
+                        "COMPLETED", fromDate, toDate, 1, 20).check(readStatus()))
                 .pause(THINK_TIME)
                 .exec(THLInterviewRequests.getAllInterviews(
                         token, organizationId, fromDate, toDate).check(readStatus()))
@@ -176,7 +176,7 @@ public final class THLinterviewSceanrios {
     }
 
     /** POST one unique message, then read the requested messages page. */
-    public static ChainBuilder interviewMessagingFlow(
+    public static ChainBuilder  interviewMessagingFlow(
             String token,
             String organizationId,
             String interviewId,
