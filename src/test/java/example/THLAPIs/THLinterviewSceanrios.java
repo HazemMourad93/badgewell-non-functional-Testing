@@ -22,7 +22,7 @@ public final class THLinterviewSceanrios {
 
     private static final AtomicLong UNIQUE_SEQUENCE = new AtomicLong();
     private static final Duration THINK_TIME = Duration.ofSeconds(1);
-    private static final Duration THINK_TIME_LCF = Duration.ofSeconds(150);
+    private static final Duration THINK_TIME_LCF = Duration.ofSeconds(5);
     private THLinterviewSceanrios() {
     }
 
@@ -164,9 +164,6 @@ public final class THLinterviewSceanrios {
                         token, organizationId, interviewId).check(successfulWriteStatus()))
                 .pause(THINK_TIME_LCF)
                 .exec(THLInterviewRequests.resumeInterviewRecording(
-                        token, organizationId, interviewId).check(successfulWriteStatus()))
-                .pause(THINK_TIME_LCF)
-                .exec(THLInterviewRequests.finishInterview(
                         token, organizationId, interviewId).check(successfulWriteStatus()))
                 .pause(THINK_TIME_LCF)
                 .exec(THLInterviewRequests.getInterviewById(
