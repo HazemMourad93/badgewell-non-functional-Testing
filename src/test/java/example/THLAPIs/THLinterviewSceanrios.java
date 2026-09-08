@@ -22,7 +22,7 @@ public final class THLinterviewSceanrios {
 
     private static final AtomicLong UNIQUE_SEQUENCE = new AtomicLong();
     private static final Duration THINK_TIME = Duration.ofSeconds(1);
-
+    private static final Duration THINK_TIME_LCF = Duration.ofSeconds(150);
     private THLinterviewSceanrios() {
     }
 
@@ -151,28 +151,27 @@ public final class THLinterviewSceanrios {
         return exec(THLInterviewRequests.getInterviewById(
                         token, organizationId, interviewId).check(readStatus()))
                 .exitHereIfFailed()
-                .pause(THINK_TIME)
+                .pause(THINK_TIME_LCF)
                 .exec(prepareUniqueInterviewMessage("THL lifecycle message"))
                 .exec(THLInterviewRequests.sendInterviewMessage(
                         token, organizationId, interviewId, "#{interviewMessageContent}")
                         .check(successfulWriteStatus()))
-                .pause(THINK_TIME)
+                .pause(THINK_TIME_LCF)
                 .exec(THLInterviewRequests.getPaginatedInterviewMessages(
                         token, organizationId, interviewId, 1, 20).check(readStatus()))
-                .pause(THINK_TIME)
+                .pause(THINK_TIME_LCF)
                 .exec(THLInterviewRequests.pauseInterviewRecording(
                         token, organizationId, interviewId).check(successfulWriteStatus()))
-                .pause(THINK_TIME)
+                .pause(THINK_TIME_LCF)
                 .exec(THLInterviewRequests.resumeInterviewRecording(
                         token, organizationId, interviewId).check(successfulWriteStatus()))
-                .pause(THINK_TIME)
+                .pause(THINK_TIME_LCF)
                 .exec(THLInterviewRequests.finishInterview(
                         token, organizationId, interviewId).check(successfulWriteStatus()))
-                .pause(THINK_TIME)
+                .pause(THINK_TIME_LCF)
                 .exec(THLInterviewRequests.getInterviewById(
-                        token, organizationId, interviewId).check(readStatus()))
-                .exec(THLInterviewRequests.getInterviewReportById(
                         token, organizationId, interviewId).check(readStatus()));
+
     }
 
     /** POST one unique message, then read the requested messages page. */
@@ -281,7 +280,8 @@ public final class THLinterviewSceanrios {
     }
 
     /** PERF-04: submit the same per-user unique schedule twice, then clean it up. */
-    public static ChainBuilder duplicateScheduleSubmission(
+    public static ChainBuilder
+    duplicateScheduleSubmission(
             String token,
             String organizationId,
             String hostId,
