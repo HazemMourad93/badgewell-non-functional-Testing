@@ -22,8 +22,8 @@ public class THLSchedulingConcurrencySimulation extends Simulation {
             "ONLINE");
     {
         setUp(scn
-                .injectOpen(rampUsers(50)
-                        .during(Duration.ofSeconds(30))))
+                .injectOpen(rampUsers(500)
+                        .during(Duration.ofSeconds(300))))
                 .protocols(HttpConfig.baseConfig())
                 .assertions(global().successfulRequests().percent().gt(95.0),
                         global().responseTime().percentile3().lt(5000));

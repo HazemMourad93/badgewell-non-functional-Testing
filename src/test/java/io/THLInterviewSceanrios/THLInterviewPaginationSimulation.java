@@ -15,7 +15,7 @@ public class THLInterviewPaginationSimulation extends Simulation {
     ScenarioBuilder scn = perf07Pagination(admintoken1, "66252f12e0313ea0b127ef7a");
     {
         setUp(scn
-                .injectOpen(rampUsers(10)
+                .injectOpen(rampUsers(30)
                         .during(Duration.ofMinutes(1))))
                 .protocols(HttpConfig.baseConfig())
                 .assertions(global().successfulRequests().percent().gt(95.0),

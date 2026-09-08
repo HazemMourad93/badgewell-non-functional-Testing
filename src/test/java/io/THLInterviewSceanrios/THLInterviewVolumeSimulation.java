@@ -10,10 +10,10 @@ import java.time.Duration;
 import static example.THLAPIs.THLinterviewSceanrios.perf06ListingVolume;
 import static io.gatling.javaapi.core.CoreDsl.*;
 
-public class THLInterviewVolumeSimulation extends Simulation {
+public class    THLInterviewVolumeSimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
     ScenarioBuilder scn = perf06ListingVolume(admintoken1, "66252f12e0313ea0b127ef7a",
-            "6a89d0315d19d0f6c3182562", "2026-08-06", "2026-08-20");
+            "6a9fffaf5eb4543347791d03", "", "");
     {
         setUp(scn
                 .injectOpen(rampUsers(20)

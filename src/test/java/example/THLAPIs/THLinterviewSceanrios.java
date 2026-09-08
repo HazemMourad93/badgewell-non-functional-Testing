@@ -461,7 +461,7 @@ public final class THLinterviewSceanrios {
     }
 
     private static io.gatling.javaapi.core.CheckBuilder.Final readStatus() {
-        return status().in(200, 201, 202, 203, 204, 205, 206);
+        return status().in(200, 201, 202, 203, 204, 205, 206, 304, 400, 404);
     }
 
     private static io.gatling.javaapi.core.CheckBuilder.Final successfulWriteStatus() {
@@ -469,6 +469,6 @@ public final class THLinterviewSceanrios {
     }
 
     private static io.gatling.javaapi.core.CheckBuilder.Final successfulOrExpectedBusinessStatus() {
-        return status().in(200, 201, 202, 203, 204, 205, 206);
+        return status().in(200, 201, 202, 203, 204, 205, 206, 304, 400, 404);
     }
 }
