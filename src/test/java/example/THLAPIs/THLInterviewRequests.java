@@ -277,7 +277,6 @@ public final class THLInterviewRequests {
         }
         return request.queryParam(name, value);
     }
-
     private static String scheduleBody(io.gatling.javaapi.core.Session session, boolean update) {
         Map<String, Object> body = new LinkedHashMap<>();
         putIfPresent(body, "scheduleType", session.get("scheduleType"));

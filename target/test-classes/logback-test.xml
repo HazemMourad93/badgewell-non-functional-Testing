@@ -8,7 +8,8 @@
 		<immediateFlush>false</immediateFlush>
 	</appender>
 
-	<!-- uncomment and set to DEBUG to log all failing HTTP requests -->
+	<!-- Log failed HTTP requests, including their status/error details -->
+	<logger name="io.gatling.http.engine.response" level="DEBUG" />
 	<!-- uncomment and set to TRACE to log all HTTP requests -->
 	<!--<logger name="io.gatling.http.engine.response" level="TRACE" />-->
 
