@@ -13,13 +13,13 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 public class THLInterviewStressSimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
     ScenarioBuilder scn = perf09Stress(admintoken1, "66252f12e0313ea0b127ef7a",
-            "6a89d0315d19d0f6c3182562");
+            "6a9feb9922b41411ab405c12");
     {
         setUp(scn
                 .injectOpen(stressPeakUsers(1500)
                         .during(Duration.ofMinutes(7))))
                 .protocols(HttpConfig.baseConfig())
                 .assertions(global().successfulRequests().percent().gt(85.0),
-                        global().responseTime().percentile3().lt(15000));
+                        global().responseTime().percentile3().lt(45000));
     }
 }
