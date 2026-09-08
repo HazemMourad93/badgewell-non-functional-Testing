@@ -13,7 +13,7 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 public class THLInterviewSpikeSimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
     ScenarioBuilder scn = perf08Spike(admintoken1, "66252f12e0313ea0b127ef7a",
-            "6a89d0315d19d0f6c3182562", "2026-08-06", "2026-08-20");
+            "6a9feb9922b41411ab405c12", "2026-09-06", "2026-09-30");
     {
         setUp(scn
                 .injectOpen(
