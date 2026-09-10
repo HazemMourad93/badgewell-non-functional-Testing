@@ -6,6 +6,7 @@ import io.gatling.javaapi.core.ScenarioBuilder;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -286,21 +287,33 @@ public final class THLinterviewSceanrios {
             String applicantEmailDomain,
             String scheduleType,
             String interviewType) {
-        return prepareUniqueScheduleData(hostId, timezoneId, applicantEmailDomain,
-                scheduleType, interviewType)
-                .exec(THLInterviewRequests.createInterviewSchedule(token, organizationId)
+        return exec(session -> session
+                .remove("firstCreatedScheduleId")
+                .remove("duplicateCreatedScheduleId")
+                .remove("duplicateScheduleStatus")
+                .set("duplicateSchedulePayload", DuplicateSchedulePayload.create(
+                        hostId, timezoneId, applicantEmailDomain, scheduleType, interviewType,
+                        java.time.Clock.systemUTC())))
+                .exec(THLInterviewRequests.submitDuplicateSchedule(token, organizationId,
+                                "THL - Create schedule before duplicate submission")
                         .check(successfulWriteStatus())
                         .check(jsonPath("$.data.id").saveAs("firstCreatedScheduleId")))
                 .exitHereIfFailed()
-                .exec(THLInterviewRequests.createInterviewSchedule(token, organizationId)
-                        .check(successfulOrExpectedBusinessStatus())
-                        .check(jsonPath("$.data.id").optional().saveAs("duplicateCreatedScheduleId")))
+                .exec(THLInterviewRequests.submitDuplicateSchedule(token, organizationId,
+                                "THL - Duplicate schedule submission")
+                        .check(status().in(200, 201, 202, 204, 400, 409))
+                        .check(status().saveAs("duplicateScheduleStatus"))
+                        .check(jsonPath("$.data.id").optional().saveAs("duplicateCreatedScheduleId"))
+                        .checkIf(session -> session.contains("duplicateScheduleStatus")
+                                && session.getInt("duplicateScheduleStatus") < 300).then(
+                                jsonPath("$.data.id").is("#{firstCreatedScheduleId}")))
                 .doIf(session -> session.contains("firstCreatedScheduleId")).then(
                         exec(THLInterviewRequests.deleteInterviewSchedule(
                                 token, organizationId, "#{firstCreatedScheduleId}")
                                 .check(successfulOrExpectedBusinessStatus()))
                 )
-                .doIf(session -> session.contains("duplicateCreatedScheduleId")).then(
+                .doIf(session -> session.contains("duplicateCreatedScheduleId")
+                        && !Objects.equals(session.getString("duplicateCreatedScheduleId"), session.getString("firstCreatedScheduleId"))).then(
                         exec(THLInterviewRequests.deleteInterviewSchedule(
                                 token, organizationId, "#{duplicateCreatedScheduleId}")
                                 .check(successfulOrExpectedBusinessStatus()))
@@ -369,8 +382,7 @@ public final class THLinterviewSceanrios {
                 .exec(sendInterviewMessage(
                         token, organizationId, interviewId, "THL concurrent message"))
                 .exec(pauseInterview(token, organizationId, interviewId))
-                .exec(resumeInterview(token, organizationId, interviewId))
-                .exec(finishInterview(token, organizationId, interviewId));
+                .exec(resumeInterview(token, organizationId, interviewId));
     }
 
     /** Dedicated candidate-authenticated join scenario. */

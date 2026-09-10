@@ -32,6 +32,16 @@ public final class THLInterviewRequests {
                 .asJson();
     }
 
+    /** Reuses the exact per-user JSON for both duplicate-test submissions. */
+    public static HttpRequestActionBuilder submitDuplicateSchedule(
+            String token, String organizationId, String requestName) {
+        return http(requestName)
+                .post(ORGANIZATIONS + organizationId + "/interview-schedules")
+                .header("Authorization", bearer(token))
+                .body(StringBody(session -> session.getString("duplicateSchedulePayload")))
+                .asJson();
+    }
+
     public static HttpRequestActionBuilder updateInterviewSchedule(
             String token,
             String organizationId,

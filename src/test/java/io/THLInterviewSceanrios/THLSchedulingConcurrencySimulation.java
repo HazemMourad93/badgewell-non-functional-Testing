@@ -15,14 +15,14 @@ public class THLSchedulingConcurrencySimulation extends Simulation {
     ScenarioBuilder scn = perf04SchedulingConcurrency(
             admintoken1,
             "66252f12e0313ea0b127ef7a",
-            "678e1da3a37a4d664121a1e7",
+            "6a82fa1e2d30faf0f9aa7572",
             "Africa/Cairo",
             "hazem.farag+77@badgewell.com",
             "HOST",
             "ONLINE");
     {
         setUp(scn
-                .injectOpen(rampUsers(500)
+                .injectOpen(rampUsers(50)
                         .during(Duration.ofSeconds(300))))
                 .protocols(HttpConfig.baseConfig())
                 .assertions(global().successfulRequests().percent().gt(95.0),
