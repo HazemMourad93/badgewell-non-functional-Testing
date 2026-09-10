@@ -13,13 +13,17 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 public class THLInterviewConcurrencySimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
     ScenarioBuilder scn = perf03ConcurrentInterviewOperations(admintoken1,
-            "66252f12e0313ea0b127ef7a", "6a89d0315d19d0f6c3182562");
+            "66252f12e0313ea0b127ef7a", "6aa274cc24d854265a58e93e");
     {
         setUp(scn
                 .injectOpen(rampUsers(50)
                         .during(Duration.ofSeconds(30))))
                 .protocols(HttpConfig.baseConfig())
                 .assertions(global().successfulRequests().percent().gt(95.0),
-                        global().responseTime().percentile3().lt(5000));
+                        global().responseTime().percentile3().lt(5000),
+                        global().successfulRequests().percent().gte(85.0),
+                        global().failedRequests().percent().lt(10.0),
+                        global().responseTime().percentile3().lt(4000),
+                        global().responseTime().max().lt(90000));
     }
 }
