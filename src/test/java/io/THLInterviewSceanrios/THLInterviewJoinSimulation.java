@@ -14,7 +14,7 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 public class THLInterviewJoinSimulation extends Simulation {
     String candtoken = ConfigReader.properties.getProperty("candtoken");
     ScenarioBuilder scn = candidateJoinScenario(candtoken,
-            "66252f12e0313ea0b127ef7a", "6a89d0315d19d0f6c3182562");
+            "66252f12e0313ea0b127ef7a", "6aa2969c34028cd21149e549");
     {
         setUp(scn
                 .injectOpen(
