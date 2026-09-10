@@ -10,7 +10,9 @@ import java.time.Duration;
 import static example.THLAPIs.THLinterviewSceanrios.perf12RecoveryAndDataIntegrity;
 import static io.gatling.javaapi.core.CoreDsl.*;
 
-public class THLInterviewRecoverySimulation extends Simulation {
+public class
+
+THLInterviewRecoverySimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
     ScenarioBuilder scn = perf12RecoveryAndDataIntegrity(admintoken1,
             "66252f12e0313ea0b127ef7a", "6a89d0315d19d0f6c3182562");
