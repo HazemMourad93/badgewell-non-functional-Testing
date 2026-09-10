@@ -15,11 +15,11 @@ public class
 THLInterviewRecoverySimulation extends Simulation {
     String admintoken1 = ConfigReader.properties.getProperty("admintoken1");
     ScenarioBuilder scn = perf12RecoveryAndDataIntegrity(admintoken1,
-            "66252f12e0313ea0b127ef7a", "6a89d0315d19d0f6c3182562");
+            "66252f12e0313ea0b127ef7a", "6aa274cc24d854265a58e93e");
     {
         setUp(scn
-                .injectOpen(rampUsers(50)
-                        .during(Duration.ofMinutes(1))))
+                .injectOpen(rampUsers(150)
+                        .during(Duration.ofMinutes(2))))
                 .protocols(HttpConfig.baseConfig())
                 .assertions(global().successfulRequests().percent().gt(95.0),
                         global().responseTime().percentile3().lt(7500));
