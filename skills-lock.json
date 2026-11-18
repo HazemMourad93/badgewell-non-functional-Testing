@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "skills": {
+    "api-idempotency-testing": {
+      "source": "naodeng/awesome-qa-skills",
+      "commit": "a857796790f8819def9d3c6dc20cc18d2d4ca435",
+      "sourceType": "github",
+      "skillPath": "skills/en/testing-types/api-idempotency-testing/SKILL.md",
+      "computedHash": "8acb9536d1594bc724308f3889cbc6a8e86367d76001ca935a94bb6c316d3b60"
+    },
+    "api-test-restassure": {
+      "source": "naodeng/awesome-qa-skills",
+      "commit": "a857796790f8819def9d3c6dc20cc18d2d4ca435",
+      "sourceType": "github",
+      "skillPath": "skills/en/testing-types/api-test-restassure/SKILL.md",
+      "computedHash": "9b37d336d923bae35f43073c59bea3e303a0ec8a87117e9cf01a3e8088ae9185"
+    },
+    "authorization-testing": {
+      "source": "naodeng/awesome-qa-skills",
+      "commit": "a857796790f8819def9d3c6dc20cc18d2d4ca435",
+      "sourceType": "github",
+      "skillPath": "skills/en/testing-types/authorization-testing/SKILL.md",
+      "computedHash": "7d7b04c890ee0f72dca98bd4a259ee43b0d6ddf63b27a7fb88db179914f633a5"
+    },
+    "flaky-test-analysis": {
+      "source": "naodeng/awesome-qa-skills",
+      "commit": "a857796790f8819def9d3c6dc20cc18d2d4ca435",
+      "sourceType": "github",
+      "skillPath": "skills/en/testing-types/flaky-test-analysis/SKILL.md",
+      "computedHash": "3b919e1c6adf2348e90d5b3f18851c3a7efbb767e0e1ae6d748e2be03ff2c61c"
+    },
+    "performance-test-gatling": {
+      "source": "naodeng/awesome-qa-skills",
+      "commit": "a857796790f8819def9d3c6dc20cc18d2d4ca435",
+      "sourceType": "github",
+      "skillPath": "skills/en/testing-types/performance-test-gatling/SKILL.md",
+      "computedHash": "18ea4ab3beda3b81e21b477b915cbb354ac841e91a8663ffbfd0d363f31972d1"
+    },
+    "test-case-writing": {
+      "source": "naodeng/awesome-qa-skills",
+      "commit": "a857796790f8819def9d3c6dc20cc18d2d4ca435",
+      "sourceType": "github",
+      "skillPath": "skills/en/testing-types/test-case-writing/SKILL.md",
+      "computedHash": "03bee0e005038ec38451bf7a0e7af21ffbdfbd0fd371273a02132896f1a10b69"
+    },
+    "ui-test-selenium": {
+      "source": "naodeng/awesome-qa-skills",
+      "commit": "a857796790f8819def9d3c6dc20cc18d2d4ca435",
+      "sourceType": "github",
+      "skillPath": "skills/en/testing-types/ui-test-selenium/SKILL.md",
+      "computedHash": "c2579731c3aa343229da09bc7d6cbb0571f722b55488b7726ab7202c753d17d5"
+    }
+  }
+}
